@@ -388,22 +388,34 @@
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 48px 20px; min-height: auto; gap: 40px; }
-    .hero-title { font-size: 52px; }
+    .hero { grid-template-columns: 1fr; padding: 40px 24px 48px; min-height: auto; gap: 0; }
+    .hero-visual { display: none; }
+    .hero-title { font-size: 56px; line-height: 0.92; margin-bottom: 20px; }
+    .hero-eyebrow { margin-bottom: 14px; }
+    .hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 16px 24px; font-size: 13px; }
     .hero::after { display: none; }
-    .section-inner, .dias-section { padding: 48px 20px; }
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
-    .steps-grid { grid-template-columns: 1fr; }
-    .lead-inner { grid-template-columns: 1fr; padding: 48px 20px; gap: 32px; }
-    .lead-offer { font-size: 44px; }
-    .about-inner { grid-template-columns: 1fr; padding: 48px 20px; gap: 40px; }
-    .founders-grid { grid-template-columns: repeat(3, 1fr); }
-    .dias-grid { grid-template-columns: repeat(4, 1fr); }
-    footer { padding: 32px 20px; }
+    .section-inner, .dias-section { padding: 40px 24px; }
+    .section-title { font-size: 36px; margin-bottom: 28px; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .product-card { padding: 20px 16px; }
+    .product-name { font-size: 18px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 14px; }
+    .step { padding: 24px 20px; }
+    .wa-cta { width: 100%; justify-content: center; margin: 0; }
+    .lead-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 28px; }
+    .lead-offer { font-size: 52px; }
+    .about-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+    .about-quote { font-size: 24px; }
+    .founders-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .dias-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .dia { padding: 14px 6px; }
+    .dia-name { font-size: 10px; }
+    .dia-status { font-size: 10px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
     .footer-info { text-align: left; }
-    .pizza-wrap { width: 240px; height: 240px; }
-    .pizza-inner { width: 190px; height: 190px; }
-    .divider { margin: 0 20px; }
+    .divider { margin: 0 24px; }
   }
 </style>
 </head>
@@ -660,16 +672,28 @@
 </footer>
 
 <script>
-function submitLead() {
-  const name = document.getElementById('lead-name').value.trim();
-  const contact = document.getElementById('lead-contact').value.trim();
-  if (!name || !contact) {
-    alert('Por favor completá tu nombre y contacto.');
-    return;
+async function submitLead() {
+  const name = document.getElementById("lead-name").value.trim();
+  const contact = document.getElementById("lead-contact").value.trim();
+  const btn = document.querySelector(".form-submit");
+  if (!name || !contact) { alert("Por favor completá tu nombre y contacto."); return; }
+  btn.textContent = "Enviando...";
+  btn.disabled = true;
+  try {
+    const res = await fetch("https://formspree.io/f/REEMPLAZA_ESTO", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ nombre: name, contacto: contact })
+    });
+    if (res.ok) {
+      document.getElementById("lead-form-wrap").style.display = "none";
+      document.getElementById("success-msg").style.display = "block";
+    } else { throw new Error("Error"); }
+  } catch(e) {
+    btn.textContent = "Quiero mi 10% de descuento";
+    btn.disabled = false;
+    alert("Hubo un problema. Por favor intentá de nuevo.");
   }
-  document.getElementById('lead-form-wrap').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
-  console.log('Lead capturado:', { name, contact, timestamp: new Date().toISOString() });
 }
 </script>
 </body>
