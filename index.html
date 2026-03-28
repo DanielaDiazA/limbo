@@ -384,6 +384,122 @@
   .footer-info { font-size: 12px; color: var(--text3); text-align: right; line-height: 1.8; }
   .footer-info strong { color: var(--text2); font-weight: 400; }
 
+  /* ─── STOCK COUNTER ─── */
+  .stock-section {
+    padding: 80px 48px;
+    background: var(--bg3);
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .stock-live-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green3); background: rgba(47,71,49,0.5);
+    border: 0.5px solid var(--green2); border-radius: 20px;
+    padding: 5px 14px; margin-bottom: 28px;
+  }
+  .stock-live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green3);
+    animation: stock-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes stock-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+  .stock-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 0.5px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .stock-card {
+    background: var(--bg2); padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .stock-card.agotado { opacity: 0.5; }
+  .stock-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+  .stock-product-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px; font-weight: 400; color: var(--text);
+    margin-bottom: 20px;
+  }
+  .stock-num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 64px; font-weight: 300; line-height: 1;
+    color: var(--text); transition: color 0.4s;
+  }
+  .stock-num.poco { color: var(--accent); }
+  .stock-num.cero { color: var(--text3); text-decoration: line-through; }
+  .stock-unit { font-size: 12px; color: var(--text3); margin-top: 8px; letter-spacing: 0.08em; }
+  .stock-status {
+    display: inline-block; margin-top: 14px;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .stock-status.ok { background: var(--green); color: var(--green3); }
+  .stock-status.poco { background: rgba(189,104,9,0.2); color: var(--accent); border: 0.5px solid rgba(189,104,9,0.3); }
+  .stock-status.cero { background: rgba(227,218,205,0.05); color: var(--text3); border: 0.5px solid var(--border); }
+  .stock-last-update { font-size: 11px; color: var(--text3); margin-top: 28px; text-align: right; }
+
+  /* ─── ADMIN PANEL ─── */
+  #admin-panel {
+    display: none;
+    margin-top: 48px; padding: 32px;
+    background: rgba(0,0,0,0.35);
+    border: 0.5px solid rgba(227,218,205,0.1);
+    border-radius: 8px;
+  }
+  .admin-header {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .admin-header::before { content: ""; display: block; width: 16px; height: 0.5px; background: var(--text3); }
+  .admin-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  .admin-field label {
+    display: block; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+  }
+  .admin-field input[type="number"] {
+    width: 100%; padding: 12px 16px;
+    background: rgba(227,218,205,0.06);
+    border: 0.5px solid var(--border2); border-radius: 4px;
+    color: var(--text); font-family: "Cormorant Garamond", serif;
+    font-size: 32px; font-weight: 300; text-align: center;
+    outline: none; transition: border-color 0.2s;
+    -moz-appearance: textfield;
+  }
+  .admin-field input[type="number"]::-webkit-outer-spin-button,
+  .admin-field input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .admin-field input[type="number"]:focus { border-color: var(--accent); }
+  .admin-actions { display: flex; align-items: center; gap: 16px; }
+  .admin-save-btn {
+    background: var(--accent); color: var(--dark);
+    border: none; padding: 12px 28px; border-radius: 4px;
+    font-family: "Jost", sans-serif; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .admin-save-btn:hover { background: var(--accent2); }
+  .admin-save-btn:disabled { opacity: 0.5; cursor: default; }
+  .admin-feedback { font-size: 12px; color: var(--green3); opacity: 0; transition: opacity 0.4s; }
+  .admin-feedback.visible { opacity: 1; }
+  .admin-pass-wrap { display: flex; gap: 12px; margin-bottom: 20px; }
+  .admin-pass-wrap input {
+    flex: 1; padding: 10px 16px;
+    background: rgba(227,218,205,0.06);
+    border: 0.5px solid var(--border2); border-radius: 4px;
+    color: var(--text); font-family: "Jost", sans-serif; font-size: 13px;
+    outline: none;
+  }
+  .admin-pass-wrap input:focus { border-color: var(--accent); }
+  .admin-pass-wrap button {
+    background: transparent; color: var(--text2);
+    border: 0.5px solid var(--border2); padding: 10px 20px; border-radius: 4px;
+    font-family: "Jost", sans-serif; font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .admin-pass-wrap button:hover { border-color: var(--text2); color: var(--text); }
+  #admin-locked { display: block; }
+  #admin-controls { display: none; }
+
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
@@ -415,6 +531,10 @@
     .dia-status { font-size: 10px; }
     footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
     .footer-info { text-align: left; }
+    .stock-section { padding: 40px 24px; }
+    .stock-grid { grid-template-columns: 1fr; }
+    .stock-num { font-size: 52px; }
+    .admin-fields { grid-template-columns: 1fr; }
     .divider { margin: 0 24px; }
   }
 </style>
@@ -426,6 +546,7 @@
   <a class="nav-logo" href="#">Limbo</a>
   <ul class="nav-links">
     <li><a href="#menu">Menú</a></li>
+    <li><a href="#disponibilidad">Disponibilidad</a></li>
     <li><a href="#pedir">Cómo pedir</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
   </ul>
@@ -538,6 +659,82 @@
 </section>
 
 <div class="divider"></div>
+
+<!-- DISPONIBILIDAD / STOCK COUNTER -->
+<section id="disponibilidad">
+  <div class="stock-section">
+    <div class="stock-live-badge">
+      <span class="stock-live-dot"></span>
+      Actualizado hoy
+    </div>
+    <p class="section-label">Lo que queda hoy</p>
+    <h2 class="section-title">Disponibilidad<br>en tiempo real</h2>
+    <div class="stock-grid">
+      <div class="stock-card" id="card-pizzas">
+        <span class="stock-icon">🍕</span>
+        <p class="stock-product-name">Pizza artesanal</p>
+        <p class="stock-num" id="num-pizzas">—</p>
+        <p class="stock-unit">unidades disponibles</p>
+        <span class="stock-status" id="status-pizzas"></span>
+      </div>
+      <div class="stock-card" id="card-pan">
+        <span class="stock-icon">🍞</span>
+        <p class="stock-product-name">Pan de masa madre</p>
+        <p class="stock-num" id="num-pan">—</p>
+        <p class="stock-unit">unidades disponibles</p>
+        <span class="stock-status" id="status-pan"></span>
+      </div>
+      <div class="stock-card" id="card-pita">
+        <span class="stock-icon">🫓</span>
+        <p class="stock-product-name">Pita de masa madre</p>
+        <p class="stock-num" id="num-pita">—</p>
+        <p class="stock-unit">unidades disponibles</p>
+        <span class="stock-status" id="status-pita"></span>
+      </div>
+    </div>
+    <p class="stock-last-update" id="stock-last-update"></p>
+
+    <!-- ADMIN PANEL — solo visible via ?admin=true en la URL -->
+    <div id="admin-panel">
+      <p class="admin-header">Panel de administración — solo vos</p>
+      <div id="admin-locked">
+        <p style="font-size:13px;color:var(--text3);margin-bottom:16px;">Iniciá sesión para actualizar los contadores.</p>
+        <div class="admin-pass-wrap" style="flex-direction:column;gap:10px;">
+          <input type="email"    id="admin-email-input" placeholder="Tu correo de Firebase" autocomplete="email"/>
+          <div style="display:flex;gap:10px;">
+            <input type="password" id="admin-pass-input"  placeholder="Contraseña" style="flex:1;" onkeydown="if(event.key==='Enter')loginAdmin()"/>
+            <button onclick="loginAdmin()">Entrar</button>
+          </div>
+        </div>
+        <p id="admin-pass-error" style="font-size:12px;color:var(--accent);display:none;margin-top:8px;"></p>
+      </div>
+      <div id="admin-controls">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <p id="admin-user-label" style="font-size:11px;color:var(--text3);letter-spacing:0.08em;"></p>
+          <button onclick="logoutAdmin()" style="background:transparent;border:0.5px solid var(--border2);color:var(--text3);padding:5px 14px;border-radius:4px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;">Cerrar sesión</button>
+        </div>
+        <div class="admin-fields">
+          <div class="admin-field">
+            <label>🍕 Pizzas</label>
+            <input type="number" id="input-pizzas" min="0" max="99" value="0"/>
+          </div>
+          <div class="admin-field">
+            <label>🍞 Pan de masa madre</label>
+            <input type="number" id="input-pan" min="0" max="99" value="0"/>
+          </div>
+          <div class="admin-field">
+            <label>🫓 Pita</label>
+            <input type="number" id="input-pita" min="0" max="99" value="0"/>
+          </div>
+        </div>
+        <div class="admin-actions">
+          <button class="admin-save-btn" id="admin-save-btn" onclick="guardarStock()">Guardar y publicar</button>
+          <span class="admin-feedback" id="admin-feedback">✓ Contadores actualizados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CÓMO PEDIR -->
 <section id="pedir">
@@ -671,11 +868,44 @@
   </div>
 </footer>
 
+<!-- Firebase SDK (Auth + Database) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
 <script>
+// ─────────────────────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyDfatZ7qrJUDrzLmvvblY8Pd6rvUUXTs-w",
+  authDomain: "limbo-6e244.firebaseapp.com",
+  databaseURL: "https://limbo-6e244-default-rtdb.firebaseio.com",
+  projectId: "limbo-6e244",
+  storageBucket: "limbo-6e244.firebasestorage.app",
+  messagingSenderId: "15722482154",
+  appId: "1:15722482154:web:1c1c61bc48076810ca0a93",
+  measurementId: "G-58P9NFDX7E"
+};─────────────────────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey:            "REEMPLAZA_apiKey",
+  authDomain:        "REEMPLAZA_authDomain",
+  databaseURL:       "https://limbo-6e244-default-rtdb.firebaseio.com",
+  projectId:         "REEMPLAZA_projectId",
+  storageBucket:     "REEMPLAZA_storageBucket",
+  messagingSenderId: "REEMPLAZA_messagingSenderId",
+  appId:             "REEMPLAZA_appId"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db   = firebase.database();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LEAD FORM
+// ─────────────────────────────────────────────────────────────────────────────
 async function submitLead() {
-  const name = document.getElementById("lead-name").value.trim();
+  const name    = document.getElementById("lead-name").value.trim();
   const contact = document.getElementById("lead-contact").value.trim();
-  const btn = document.querySelector(".form-submit");
+  const btn     = document.querySelector(".form-submit");
   if (!name || !contact) { alert("Por favor completá tu nombre y contacto."); return; }
   btn.textContent = "Enviando...";
   btn.disabled = true;
@@ -687,12 +917,149 @@ async function submitLead() {
     });
     if (res.ok) {
       document.getElementById("lead-form-wrap").style.display = "none";
-      document.getElementById("success-msg").style.display = "block";
-    } else { throw new Error("Error"); }
+      document.getElementById("success-msg").style.display   = "block";
+    } else { throw new Error(); }
   } catch(e) {
     btn.textContent = "Quiero mi 10% de descuento";
     btn.disabled = false;
     alert("Hubo un problema. Por favor intentá de nuevo.");
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STOCK COUNTER — Lectura pública en tiempo real
+// ─────────────────────────────────────────────────────────────────────────────
+const UMBRAL_POCO = 3;
+
+function renderStock(data) {
+  const productos = [
+    { key: "pizzas", numId: "num-pizzas", statusId: "status-pizzas", cardId: "card-pizzas" },
+    { key: "pan",    numId: "num-pan",    statusId: "status-pan",    cardId: "card-pan"    },
+    { key: "pita",   numId: "num-pita",   statusId: "status-pita",   cardId: "card-pita"   },
+  ];
+  productos.forEach(p => {
+    const n      = (data && data[p.key] !== undefined) ? parseInt(data[p.key]) : 0;
+    const numEl  = document.getElementById(p.numId);
+    const stEl   = document.getElementById(p.statusId);
+    const cardEl = document.getElementById(p.cardId);
+    numEl.textContent = n;
+    numEl.className   = "stock-num";
+    cardEl.classList.remove("agotado");
+    if (n === 0) {
+      numEl.classList.add("cero");
+      stEl.textContent = "Agotado hoy";
+      stEl.className   = "stock-status cero";
+      cardEl.classList.add("agotado");
+    } else if (n <= UMBRAL_POCO) {
+      numEl.classList.add("poco");
+      stEl.textContent = "Casi agotado";
+      stEl.className   = "stock-status poco";
+    } else {
+      stEl.textContent = "Disponible";
+      stEl.className   = "stock-status ok";
+    }
+  });
+  if (data && data.ultimaActualizacion) {
+    const d    = new Date(data.ultimaActualizacion);
+    const hora = d.toLocaleTimeString("es-CR", { hour: "2-digit", minute: "2-digit" });
+    const fec  = d.toLocaleDateString("es-CR",  { weekday: "long", day: "numeric", month: "long" });
+    document.getElementById("stock-last-update").textContent =
+      "Última actualización: " + hora + " · " + fec;
+  }
+}
+
+// Escucha cambios en tiempo real (se actualiza solo sin recargar la página)
+db.ref("stock").on("value", snap => {
+  renderStock(snap.val());
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADMIN PANEL — Firebase Authentication
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Mostrar panel solo si la URL tiene ?admin=true
+(function initAdmin() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("admin") === "true") {
+    document.getElementById("admin-panel").style.display = "block";
+  }
+})();
+
+// Observar estado de autenticación
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // Sesión activa — mostrar controles
+    document.getElementById("admin-locked").style.display   = "none";
+    document.getElementById("admin-controls").style.display = "block";
+    document.getElementById("admin-user-label").textContent =
+      "Sesión activa: " + user.email;
+    cargarStockAdmin();
+  } else {
+    // Sin sesión — mostrar formulario de login
+    document.getElementById("admin-locked").style.display   = "block";
+    document.getElementById("admin-controls").style.display = "none";
+  }
+});
+
+async function loginAdmin() {
+  const email  = document.getElementById("admin-email-input").value.trim();
+  const pass   = document.getElementById("admin-pass-input").value;
+  const errEl  = document.getElementById("admin-pass-error");
+  const btn    = document.querySelector(".admin-pass-wrap button");
+  if (!email || !pass) { errEl.textContent = "Completá el correo y la contraseña."; errEl.style.display = "block"; return; }
+  btn.textContent = "Entrando...";
+  btn.disabled = true;
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+    // onAuthStateChanged se encarga del resto
+  } catch(e) {
+    const msgs = {
+      "auth/user-not-found":    "No existe una cuenta con ese correo.",
+      "auth/wrong-password":    "Contraseña incorrecta.",
+      "auth/invalid-email":     "El correo no es válido.",
+      "auth/too-many-requests": "Demasiados intentos. Esperá un momento.",
+    };
+    errEl.textContent  = msgs[e.code] || "Error al iniciar sesión. Intentá de nuevo.";
+    errEl.style.display = "block";
+    btn.textContent = "Entrar";
+    btn.disabled = false;
+  }
+}
+
+async function logoutAdmin() {
+  await auth.signOut();
+}
+
+async function cargarStockAdmin() {
+  const snap = await db.ref("stock").get();
+  const data = snap.val();
+  if (data) {
+    if (data.pizzas !== undefined) document.getElementById("input-pizzas").value = data.pizzas;
+    if (data.pan    !== undefined) document.getElementById("input-pan").value    = data.pan;
+    if (data.pita   !== undefined) document.getElementById("input-pita").value   = data.pita;
+  }
+}
+
+async function guardarStock() {
+  const btn      = document.getElementById("admin-save-btn");
+  const feedback = document.getElementById("admin-feedback");
+  const pizzas   = parseInt(document.getElementById("input-pizzas").value) || 0;
+  const pan      = parseInt(document.getElementById("input-pan").value)    || 0;
+  const pita     = parseInt(document.getElementById("input-pita").value)   || 0;
+  btn.disabled    = true;
+  btn.textContent = "Guardando...";
+  try {
+    await db.ref("stock").set({
+      pizzas, pan, pita,
+      ultimaActualizacion: new Date().toISOString()
+    });
+    feedback.classList.add("visible");
+    setTimeout(() => feedback.classList.remove("visible"), 3000);
+  } catch(e) {
+    alert("No se pudo guardar. Verificá que estés autenticado y que las reglas de Firebase estén correctas.");
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = "Guardar y publicar";
   }
 }
 </script>
