@@ -874,17 +874,6 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
 <script>
-// ─────────────────────────────────────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey: "AIzaSyCrgK1TZnnqXR0hpdYAZHbQ0KU-mruRa40",
-  authDomain: "limbo-6e244.firebaseapp.com",
-  databaseURL: "https://limbo-6e244-default-rtdb.firebaseio.com",
-  projectId: "limbo-6e244",
-  storageBucket: "limbo-6e244.firebasestorage.app",
-  messagingSenderId: "15722482154",
-  appId: "1:15722482154:web:1c1c61bc48076810ca0a93",
-  measurementId: "G-58P9NFDX7E"
-};─────────────────────────────────────────────────────────────────────────────
 const firebaseConfig = {
   apiKey:            "AIzaSyCrgK1TZnnqXR0hpdYAZHbQ0KU-mruRa40",
   authDomain:        "limbo-6e244.firebaseapp.com",
@@ -899,9 +888,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db   = firebase.database();
 
-// ─────────────────────────────────────────────────────────────────────────────
 // LEAD FORM
-// ─────────────────────────────────────────────────────────────────────────────
 async function submitLead() {
   const name    = document.getElementById("lead-name").value.trim();
   const contact = document.getElementById("lead-contact").value.trim();
@@ -926,9 +913,7 @@ async function submitLead() {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STOCK COUNTER — Lectura pública en tiempo real
-// ─────────────────────────────────────────────────────────────────────────────
+// STOCK COUNTER
 const UMBRAL_POCO = 3;
 
 function renderStock(data) {
@@ -968,16 +953,10 @@ function renderStock(data) {
   }
 }
 
-// Escucha cambios en tiempo real (se actualiza solo sin recargar la página)
-db.ref("stock").on("value", snap => {
-  renderStock(snap.val());
-});
+// Escucha cambios en tiempo real
+db.ref("stock").on("value", snap => { renderStock(snap.val()); });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ADMIN PANEL — Firebase Authentication
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Mostrar panel solo si la URL tiene ?admin=true
+// ADMIN PANEL
 (function initAdmin() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("admin") === "true") {
@@ -985,50 +964,44 @@ db.ref("stock").on("value", snap => {
   }
 })();
 
-// Observar estado de autenticación
 auth.onAuthStateChanged(user => {
   if (user) {
-    // Sesión activa — mostrar controles
     document.getElementById("admin-locked").style.display   = "none";
     document.getElementById("admin-controls").style.display = "block";
-    document.getElementById("admin-user-label").textContent =
-      "Sesión activa: " + user.email;
+    document.getElementById("admin-user-label").textContent = "Sesión activa: " + user.email;
     cargarStockAdmin();
   } else {
-    // Sin sesión — mostrar formulario de login
     document.getElementById("admin-locked").style.display   = "block";
     document.getElementById("admin-controls").style.display = "none";
   }
 });
 
 async function loginAdmin() {
-  const email  = document.getElementById("admin-email-input").value.trim();
-  const pass   = document.getElementById("admin-pass-input").value;
-  const errEl  = document.getElementById("admin-pass-error");
-  const btn    = document.querySelector(".admin-pass-wrap button");
+  const email = document.getElementById("admin-email-input").value.trim();
+  const pass  = document.getElementById("admin-pass-input").value;
+  const errEl = document.getElementById("admin-pass-error");
+  const btn   = document.querySelector(".admin-pass-wrap button");
   if (!email || !pass) { errEl.textContent = "Completá el correo y la contraseña."; errEl.style.display = "block"; return; }
   btn.textContent = "Entrando...";
   btn.disabled = true;
   try {
     await auth.signInWithEmailAndPassword(email, pass);
-    // onAuthStateChanged se encarga del resto
   } catch(e) {
     const msgs = {
       "auth/user-not-found":    "No existe una cuenta con ese correo.",
       "auth/wrong-password":    "Contraseña incorrecta.",
+      "auth/invalid-credential":"Correo o contraseña incorrectos.",
       "auth/invalid-email":     "El correo no es válido.",
       "auth/too-many-requests": "Demasiados intentos. Esperá un momento.",
     };
-    errEl.textContent  = msgs[e.code] || "Error al iniciar sesión. Intentá de nuevo.";
+    errEl.textContent   = msgs[e.code] || "Error al iniciar sesión. Intentá de nuevo.";
     errEl.style.display = "block";
     btn.textContent = "Entrar";
     btn.disabled = false;
   }
 }
 
-async function logoutAdmin() {
-  await auth.signOut();
-}
+async function logoutAdmin() { await auth.signOut(); }
 
 async function cargarStockAdmin() {
   const snap = await db.ref("stock").get();
