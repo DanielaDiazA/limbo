@@ -437,50 +437,6 @@
   .stock-status.poco { background: rgba(189,104,9,0.2); color: var(--accent); border: 0.5px solid rgba(189,104,9,0.3); }
   .stock-status.cero { background: rgba(227,218,205,0.05); color: var(--text3); border: 0.5px solid var(--border); }
   .stock-last-update { font-size: 11px; color: var(--text3); margin-top: 28px; text-align: right; }
-
-  /* ─── ADMIN PANEL ─── */
-  #admin-panel {
-    display: none;
-    margin-top: 48px; padding: 32px;
-    background: rgba(0,0,0,0.35);
-    border: 0.5px solid rgba(227,218,205,0.1);
-    border-radius: 8px;
-  }
-  .admin-header {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--text3); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .admin-header::before { content: ""; display: block; width: 16px; height: 0.5px; background: var(--text3); }
-  .admin-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
-  .admin-field label {
-    display: block; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
-  }
-  .admin-field input[type="number"] {
-    width: 100%; padding: 12px 16px;
-    background: rgba(227,218,205,0.06);
-    border: 0.5px solid var(--border2); border-radius: 4px;
-    color: var(--text); font-family: "Cormorant Garamond", serif;
-    font-size: 32px; font-weight: 300; text-align: center;
-    outline: none; transition: border-color 0.2s;
-    -moz-appearance: textfield;
-  }
-  .admin-field input[type="number"]::-webkit-outer-spin-button,
-  .admin-field input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .admin-field input[type="number"]:focus { border-color: var(--accent); }
-  .admin-actions { display: flex; align-items: center; gap: 16px; }
-  .admin-save-btn {
-    background: var(--accent); color: var(--dark);
-    border: none; padding: 12px 28px; border-radius: 4px;
-    font-family: "Jost", sans-serif; font-size: 12px;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .admin-save-btn:hover { background: var(--accent2); }
-  .admin-save-btn:disabled { opacity: 0.5; cursor: default; }
-  .admin-feedback { font-size: 12px; color: var(--green3); opacity: 0; transition: opacity 0.4s; }
-  .admin-feedback.visible { opacity: 1; }
   .admin-pass-wrap { display: flex; gap: 12px; margin-bottom: 20px; }
   .admin-pass-wrap input {
     flex: 1; padding: 10px 16px;
@@ -693,47 +649,7 @@
       </div>
     </div>
     <p class="stock-last-update" id="stock-last-update"></p>
-
-    <!-- ADMIN PANEL — solo visible via ?admin=true en la URL -->
-    <div id="admin-panel">
-      <p class="admin-header">Panel de administración — solo vos</p>
-      <div id="admin-locked">
-        <p style="font-size:13px;color:var(--text3);margin-bottom:16px;">Iniciá sesión para actualizar los contadores.</p>
-        <div class="admin-pass-wrap" style="flex-direction:column;gap:10px;">
-          <input type="email"    id="admin-email-input" placeholder="Tu correo de Firebase" autocomplete="email"/>
-          <div style="display:flex;gap:10px;">
-            <input type="password" id="admin-pass-input"  placeholder="Contraseña" style="flex:1;" onkeydown="if(event.key==='Enter')loginAdmin()"/>
-            <button onclick="loginAdmin()">Entrar</button>
-          </div>
-        </div>
-        <p id="admin-pass-error" style="font-size:12px;color:var(--accent);display:none;margin-top:8px;"></p>
-      </div>
-      <div id="admin-controls">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-          <p id="admin-user-label" style="font-size:11px;color:var(--text3);letter-spacing:0.08em;"></p>
-          <button onclick="logoutAdmin()" style="background:transparent;border:0.5px solid var(--border2);color:var(--text3);padding:5px 14px;border-radius:4px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;">Cerrar sesión</button>
-        </div>
-        <div class="admin-fields">
-          <div class="admin-field">
-            <label>🍕 Pizzas</label>
-            <input type="number" id="input-pizzas" min="0" max="99" value="0"/>
-          </div>
-          <div class="admin-field">
-            <label>🍞 Pan de masa madre</label>
-            <input type="number" id="input-pan" min="0" max="99" value="0"/>
-          </div>
-          <div class="admin-field">
-            <label>🫓 Pita</label>
-            <input type="number" id="input-pita" min="0" max="99" value="0"/>
-          </div>
-        </div>
-        <div class="admin-actions">
-          <button class="admin-save-btn" id="admin-save-btn" onclick="guardarStock()">Guardar y publicar</button>
-          <span class="admin-feedback" id="admin-feedback">✓ Contadores actualizados</span>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 </section>
 
 <!-- CÓMO PEDIR -->
@@ -869,24 +785,62 @@
 </footer>
 
 <!-- Firebase SDK (Auth + Database) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
 <script>
-const firebaseConfig = {
-  apiKey:            "AIzaSyCrgK1TZnnqXR0hpdYAZHbQ0KU-mruRa40",
-  authDomain:        "limbo-6e244.firebaseapp.com",
-  databaseURL:       "https://limbo-6e244-default-rtdb.firebaseio.com",
-  projectId:         "limbo-6e244",
-  storageBucket:     "limbo-6e244.firebasestorage.app",
-  messagingSenderId: "15722482154",
-  appId:             "1:15722482154:web:1c1c61bc48076810ca0a93"
-};
+const SHEETS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQVJz9fBmQrypifeKDWIwURtpKv-lglh2sD6irtj8Y_IIL1iMJEwhDlbBZ_cG52lE3JOjECZPuoUA5C/pub?gid=0&single=true&output=csv";
+const UMBRAL_POCO = 3;
+const REFRESH_MS  = 30000;
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db   = firebase.database();
+function renderStock(data) {
+  const productos = [
+    { key: "pizzas", numId: "num-pizzas", statusId: "status-pizzas", cardId: "card-pizzas" },
+    { key: "pan",    numId: "num-pan",    statusId: "status-pan",    cardId: "card-pan"    },
+    { key: "pita",   numId: "num-pita",   statusId: "status-pita",   cardId: "card-pita"   },
+  ];
+  productos.forEach(p => {
+    const n      = data[p.key] !== undefined ? parseInt(data[p.key]) : 0;
+    const numEl  = document.getElementById(p.numId);
+    const stEl   = document.getElementById(p.statusId);
+    const cardEl = document.getElementById(p.cardId);
+    numEl.textContent = n;
+    numEl.className   = "stock-num";
+    cardEl.classList.remove("agotado");
+    if (n === 0) {
+      numEl.classList.add("cero");
+      stEl.textContent = "Agotado hoy";
+      stEl.className   = "stock-status cero";
+      cardEl.classList.add("agotado");
+    } else if (n <= UMBRAL_POCO) {
+      numEl.classList.add("poco");
+      stEl.textContent = "Casi agotado";
+      stEl.className   = "stock-status poco";
+    } else {
+      stEl.textContent = "Disponible";
+      stEl.className   = "stock-status ok";
+    }
+  });
+  const ahora = new Date();
+  const hora  = ahora.toLocaleTimeString("es-CR", { hour: "2-digit", minute: "2-digit" });
+  const fec   = ahora.toLocaleDateString("es-CR",  { weekday: "long", day: "numeric", month: "long" });
+  document.getElementById("stock-last-update").textContent = "Última actualización: " + hora + " · " + fec;
+}
+
+async function cargarStock() {
+  try {
+    const res  = await fetch(SHEETS_CSV + "&cachebust=" + Date.now());
+    const text = await res.text();
+    const rows = text.trim().split("
+").map(r => r.split(",").map(c => c.trim().replace(/"/g,"")));
+    const data = {};
+    rows.forEach(r => { if (r[0] && r[1] !== undefined) data[r[0]] = parseInt(r[1]) || 0; });
+    renderStock(data);
+  } catch(e) {
+    console.warn("No se pudo cargar el stock:", e);
+  }
+}
+
+cargarStock();
+setInterval(cargarStock, REFRESH_MS);
 
 // LEAD FORM
 async function submitLead() {
@@ -910,129 +864,6 @@ async function submitLead() {
     btn.textContent = "Quiero mi 10% de descuento";
     btn.disabled = false;
     alert("Hubo un problema. Por favor intentá de nuevo.");
-  }
-}
-
-// STOCK COUNTER
-const UMBRAL_POCO = 3;
-
-function renderStock(data) {
-  const productos = [
-    { key: "pizzas", numId: "num-pizzas", statusId: "status-pizzas", cardId: "card-pizzas" },
-    { key: "pan",    numId: "num-pan",    statusId: "status-pan",    cardId: "card-pan"    },
-    { key: "pita",   numId: "num-pita",   statusId: "status-pita",   cardId: "card-pita"   },
-  ];
-  productos.forEach(p => {
-    const n      = (data && data[p.key] !== undefined) ? parseInt(data[p.key]) : 0;
-    const numEl  = document.getElementById(p.numId);
-    const stEl   = document.getElementById(p.statusId);
-    const cardEl = document.getElementById(p.cardId);
-    numEl.textContent = n;
-    numEl.className   = "stock-num";
-    cardEl.classList.remove("agotado");
-    if (n === 0) {
-      numEl.classList.add("cero");
-      stEl.textContent = "Agotado hoy";
-      stEl.className   = "stock-status cero";
-      cardEl.classList.add("agotado");
-    } else if (n <= UMBRAL_POCO) {
-      numEl.classList.add("poco");
-      stEl.textContent = "Casi agotado";
-      stEl.className   = "stock-status poco";
-    } else {
-      stEl.textContent = "Disponible";
-      stEl.className   = "stock-status ok";
-    }
-  });
-  if (data && data.ultimaActualizacion) {
-    const d    = new Date(data.ultimaActualizacion);
-    const hora = d.toLocaleTimeString("es-CR", { hour: "2-digit", minute: "2-digit" });
-    const fec  = d.toLocaleDateString("es-CR",  { weekday: "long", day: "numeric", month: "long" });
-    document.getElementById("stock-last-update").textContent =
-      "Última actualización: " + hora + " · " + fec;
-  }
-}
-
-// Escucha cambios en tiempo real
-db.ref("stock").on("value", snap => { renderStock(snap.val()); });
-
-// ADMIN PANEL
-(function initAdmin() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("admin") === "true") {
-    document.getElementById("admin-panel").style.display = "block";
-  }
-})();
-
-auth.onAuthStateChanged(user => {
-  if (user) {
-    document.getElementById("admin-locked").style.display   = "none";
-    document.getElementById("admin-controls").style.display = "block";
-    document.getElementById("admin-user-label").textContent = "Sesión activa: " + user.email;
-    cargarStockAdmin();
-  } else {
-    document.getElementById("admin-locked").style.display   = "block";
-    document.getElementById("admin-controls").style.display = "none";
-  }
-});
-
-async function loginAdmin() {
-  const email = document.getElementById("admin-email-input").value.trim();
-  const pass  = document.getElementById("admin-pass-input").value;
-  const errEl = document.getElementById("admin-pass-error");
-  const btn   = document.querySelector(".admin-pass-wrap button");
-  if (!email || !pass) { errEl.textContent = "Completá el correo y la contraseña."; errEl.style.display = "block"; return; }
-  btn.textContent = "Entrando...";
-  btn.disabled = true;
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-  } catch(e) {
-    const msgs = {
-      "auth/user-not-found":    "No existe una cuenta con ese correo.",
-      "auth/wrong-password":    "Contraseña incorrecta.",
-      "auth/invalid-credential":"Correo o contraseña incorrectos.",
-      "auth/invalid-email":     "El correo no es válido.",
-      "auth/too-many-requests": "Demasiados intentos. Esperá un momento.",
-    };
-    errEl.textContent   = msgs[e.code] || "Error al iniciar sesión. Intentá de nuevo.";
-    errEl.style.display = "block";
-    btn.textContent = "Entrar";
-    btn.disabled = false;
-  }
-}
-
-async function logoutAdmin() { await auth.signOut(); }
-
-async function cargarStockAdmin() {
-  const snap = await db.ref("stock").get();
-  const data = snap.val();
-  if (data) {
-    if (data.pizzas !== undefined) document.getElementById("input-pizzas").value = data.pizzas;
-    if (data.pan    !== undefined) document.getElementById("input-pan").value    = data.pan;
-    if (data.pita   !== undefined) document.getElementById("input-pita").value   = data.pita;
-  }
-}
-
-async function guardarStock() {
-  const btn      = document.getElementById("admin-save-btn");
-  const feedback = document.getElementById("admin-feedback");
-  const pizzas   = parseInt(document.getElementById("input-pizzas").value) || 0;
-  const pan      = parseInt(document.getElementById("input-pan").value)    || 0;
-  const pita     = parseInt(document.getElementById("input-pita").value)   || 0;
-  btn.disabled    = true;
-  btn.textContent = "Guardando...";
-  try {
-    await db.ref("stock").set({
-      pizzas, pan, pita,
-      ultimaActualizacion: new Date().toISOString()
-    });
-    feedback.classList.add("visible");
-    setTimeout(() => feedback.classList.remove("visible"), 3000);
-  } catch(e) {
-    alert("No se pudo guardar. Verificá que estés autenticado y que las reglas de Firebase estén correctas.");
-  } finally {
-    btn.disabled    = false;
-    btn.textContent = "Guardar y publicar";
   }
 }
 </script>
