@@ -826,11 +826,12 @@ function renderStock(data) {
 }
 
 async function cargarStock() {
+  const PROXY = "https://api.allorigins.win/raw?url=";
+  const url   = PROXY + encodeURIComponent(SHEETS_CSV);
   try {
-    const res  = await fetch(SHEETS_CSV + "&cachebust=" + Date.now());
+    const res  = await fetch(url);
     const text = await res.text();
-    const rows = text.trim().split("
-").map(r => r.split(",").map(c => c.trim().replace(/"/g,"")));
+    const rows = text.trim().split("\n").map(r => r.split(",").map(c => c.trim().replace(/"/g,"")));
     const data = {};
     rows.forEach(r => { if (r[0] && r[1] !== undefined) data[r[0]] = parseInt(r[1]) || 0; });
     renderStock(data);
