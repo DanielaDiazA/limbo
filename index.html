@@ -78,18 +78,24 @@
   /* ─── HERO ─── */
   .hero {
     min-height: 92vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; gap: 0;
-    padding: 80px 48px 80px;
+    display: flex; align-items: center;
+    padding: 80px 48px;
     position: relative;
     border-bottom: 0.5px solid var(--border);
+    overflow: hidden;
   }
   .hero::after {
     content: '';
-    position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
-    background: radial-gradient(ellipse at 60% 50%, rgba(189,104,9,0.08) 0%, transparent 70%);
-    pointer-events: none;
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(61,10,30,0.92) 0%,
+      rgba(61,10,30,0.75) 45%,
+      rgba(61,10,30,0.2) 100%
+    );
+    pointer-events: none; z-index: 1;
   }
+  .hero-text { position: relative; z-index: 2; max-width: 520px; }
   .hero-eyebrow {
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 20px;
@@ -133,28 +139,17 @@
   }
   .btn-ghost:hover { color: var(--text); border-color: var(--text2); }
   .hero-visual {
-    display: flex; justify-content: center; align-items: stretch;
-    position: relative;
-    margin: -80px -48px -80px 0;
+    position: absolute; inset: 0; z-index: 0;
   }
   .hero-photo-wrap {
-    position: relative; width: 100%; height: 100%;
-    min-height: 520px; overflow: hidden;
+    width: 100%; height: 100%;
   }
   .hero-photo {
     width: 100%; height: 100%;
-    object-fit: cover; object-position: center;
+    object-fit: cover; object-position: center 40%;
     display: block;
   }
-  .hero-photo-fade {
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      to right,
-      var(--bg) 0%,
-      rgba(88,15,42,0.6) 20%,
-      transparent 55%
-    );
-  }
+  .hero-photo-fade { display: none; }
 
   /* ─── SECTION BASE ─── */
   section { position: relative; }
@@ -468,10 +463,12 @@
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 40px 24px 48px; min-height: auto; gap: 0; }
-    .hero-visual { display: none; }
-    .hero-title { font-size: 56px; line-height: 0.92; margin-bottom: 20px; }
-    .hero-eyebrow { margin-bottom: 14px; }
+    .hero { padding: 60px 24px 60px; min-height: 80vh; }
+    .hero-visual { display: block; }
+    .hero-title { font-size: 52px; line-height: 0.95; margin-bottom: 20px; }
+    .hero::after { background: linear-gradient(to bottom, rgba(61,10,30,0.7) 0%, rgba(61,10,30,0.85) 60%, rgba(61,10,30,0.95) 100%); }
+    .hero-text { position: relative; z-index: 2; max-width: 520px; }
+  .hero-eyebrow { margin-bottom: 14px; }
     .hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
     .hero-btns { flex-direction: column; gap: 10px; }
     .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 16px 24px; font-size: 13px; }
@@ -558,7 +555,7 @@
       </div>
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pan.jpg" alt="Pan de masa madre artesanal" class="product-photo"/>
+          <img src="pan.jpg" alt="Pan de masa madre artesanal" class="product-photo" style="object-position: center 20%;"/>
         </div>
         <p class="product-name">Pan de masa madre</p>
         <p class="product-desc">Hogaza rústica con corteza crujiente y miga abierta. Fermentación 24–48 horas.</p>
@@ -584,7 +581,7 @@
       </div>
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pita.jpg" alt="Pitas de masa madre" class="product-photo pita"/>
+          <img src="pita.jpg" alt="Pitas de masa madre" class="product-photo" style="object-position: center 60%;"/>
         </div>
         <p class="product-name">Pita de masa madre</p>
         <p class="product-desc">Perfecta para dips, rellenos o sola con mantequilla de ajo.</p>
