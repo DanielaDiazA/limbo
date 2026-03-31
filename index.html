@@ -374,19 +374,28 @@
   /* ─── MENÚ COMPLETO ─── */
   .menu-completo-inner {
     padding: 80px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .menu-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+  .menu-header .section-title { margin-bottom: 16px; }
+  .menu-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .menu-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    align-items: start;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
   }
-  .menu-completo-text {
-    display: flex; flex-direction: column; gap: 0;
-    padding-right: 16px;
-    border-right: 0.5px solid var(--border);
-  }
-  .menu-completo-text .section-title { font-size: 40px; margin-bottom: 16px; }
   .menu-image-item {
-    border-radius: 8px; overflow: hidden;
+    border-radius: 8px;
+    overflow: hidden;
     border: 0.5px solid var(--border);
   }
   .menu-image-item img {
@@ -534,8 +543,8 @@
     .stock-num { font-size: 52px; }
     .admin-fields { grid-template-columns: 1fr; }
     .divider { margin: 0 24px; }
-    .menu-completo-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 20px; }
-    .menu-completo-text { border-right: none; border-bottom: 0.5px solid var(--border); padding-right: 0; padding-bottom: 24px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-completo-inner { padding: 40px 24px; }
   }
 </style>
 </head>
@@ -618,24 +627,22 @@
 <!-- MENÚ COMPLETO -->
 <section id="menu-completo">
   <div class="menu-completo-inner">
-    <div class="menu-completo-text">
-      <p class="section-label">Menú completo</p>
-      <h2 class="section-title" style="margin-bottom: 24px;">Todas las<br>opciones<br>y precios</h2>
-      <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:32px;">Pizzas de 12″, pan de masa madre blanco o integral, y pitas integrales. Todo hecho bajo pedido.</p>
-      <a class="wa-cta" href="https://wa.me/50600000000" target="_blank">
-        <span class="wa-dot"></span>
-        <div>
-          <p class="wa-cta-text">Pedir ahora</p>
-          <p class="wa-cta-sub">Menos de 30 min</p>
-        </div>
-      </a>
+
+    <div class="menu-header">
+      <p class="section-label" style="justify-content:center;">Menú completo</p>
+      <h2 class="section-title">Todas las opciones y precios</h2>
+      <p class="menu-desc">Pizzas de 12″, pan de masa madre blanco o integral, y pitas integrales. Todo hecho bajo pedido.</p>
     </div>
-    <div class="menu-image-item">
-      <img src="menu-1.jpg" alt="Menú Limbo — Pizzas"/>
+
+    <div class="menu-grid">
+      <div class="menu-image-item">
+        <img src="menu-1.jpg" alt="Menú Limbo — Pizzas"/>
+      </div>
+      <div class="menu-image-item">
+        <img src="menu-2.jpg" alt="Menú Limbo — Panes y pitas"/>
+      </div>
     </div>
-    <div class="menu-image-item">
-      <img src="menu-2.jpg" alt="Menú Limbo — Panes y pitas"/>
-    </div>
+
   </div>
 </section>
 
