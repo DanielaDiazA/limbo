@@ -471,6 +471,48 @@
   #admin-locked { display: block; }
   #admin-controls { display: none; }
 
+  /* ─── MODAL MENÚ ─── */
+  .menu-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(10, 3, 7, 0.88);
+    backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .menu-modal-overlay.open { display: flex; }
+  .menu-modal {
+    background: var(--bg2); border: 0.5px solid var(--border2);
+    border-radius: 12px; overflow: hidden;
+    max-width: 960px; width: 100%;
+    max-height: 90vh; display: flex; flex-direction: column;
+  }
+  .menu-modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px; border-bottom: 0.5px solid var(--border);
+    flex-shrink: 0;
+  }
+  .menu-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; font-style: italic;
+    color: var(--accent);
+  }
+  .menu-modal-close {
+    background: transparent; border: 0.5px solid var(--border2);
+    color: var(--text2); width: 34px; height: 34px; border-radius: 50%;
+    font-size: 18px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.2s; line-height: 1;
+  }
+  .menu-modal-close:hover { border-color: var(--text2); color: var(--text); }
+  .menu-modal-body {
+    overflow-y: auto; padding: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .menu-page {
+    border-radius: 6px; overflow: hidden;
+    border: 0.5px solid var(--border);
+  }
+  .menu-page img { width: 100%; display: block; }
+
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
@@ -480,11 +522,10 @@
     .hero-title { font-size: 52px; line-height: 0.95; margin-bottom: 20px; }
     .hero::after { background: linear-gradient(to top, rgba(61,10,30,0.94) 0%, rgba(61,10,30,0.82) 35%, rgba(61,10,30,0.55) 60%, rgba(61,10,30,0.25) 85%, rgba(61,10,30,0.1) 100%); }
     .hero-text { position: relative; z-index: 2; max-width: 520px; }
-  .hero-eyebrow { margin-bottom: 14px; }
+    .hero-eyebrow { margin-bottom: 14px; }
     .hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
     .hero-btns { flex-direction: column; gap: 10px; }
     .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 16px 24px; font-size: 13px; }
-
     .section-inner, .dias-section { padding: 40px 24px; }
     .section-title { font-size: 36px; margin-bottom: 28px; }
     .products-grid { grid-template-columns: 1fr; }
@@ -511,6 +552,8 @@
     .stock-num { font-size: 52px; }
     .admin-fields { grid-template-columns: 1fr; }
     .divider { margin: 0 24px; }
+    .menu-modal-body { grid-template-columns: 1fr; padding: 16px; }
+    .menu-modal-header { padding: 16px 20px; }
   }
 </style>
 </head>
@@ -563,7 +606,7 @@
         </div>
         <p class="product-name">Pizza artesanal</p>
         <p class="product-desc">Pizza de 12″, 8 porciones. Masa de larga fermentación con ingredientes seleccionados y frescos.</p>
-        <p class="product-price" style="font-size:13px;color:var(--text2);">Ver menú completo</p>
+        <p class="product-price" style="font-size:13px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;" onclick="document.getElementById('menu-modal').classList.add('open')">Ver menú completo →</p>
         <span class="product-tag">Jueves — domingo</span>
       </div>
       <div class="product-card">
@@ -623,7 +666,7 @@
       </div>
     </div>
     <p class="stock-last-update" id="stock-last-update"></p>
-</div>
+  </div>
 </section>
 
 <!-- CÓMO PEDIR -->
@@ -736,7 +779,6 @@
           <p class="founder-role">Marketing</p>
         </div>
       </div>
-      
     </div>
   </div>
 </section>
@@ -758,10 +800,32 @@
   </div>
 </footer>
 
-<!-- Firebase SDK (Auth + Database) -->
+<!-- MODAL MENÚ -->
+<div class="menu-modal-overlay" id="menu-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="menu-modal">
+    <div class="menu-modal-header">
+      <span class="menu-modal-title">Limbo — Menú completo</span>
+      <button class="menu-modal-close" onclick="document.getElementById('menu-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="menu-modal-body">
+      <div class="menu-page">
+        <img src="menu-1.jpg" alt="Menú Limbo — Pizzas"/>
+      </div>
+      <div class="menu-page">
+        <img src="menu-2.jpg" alt="Menú Limbo — Panes y pitas"/>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 
+// ─── CERRAR MODAL CON ESCAPE ───
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('menu-modal').classList.remove('open');
+});
+
+// ─── STOCK ───
 const UMBRAL_POCO = 3;
 const REFRESH_MS  = 30000;
 
@@ -813,7 +877,7 @@ async function cargarStock() {
 cargarStock();
 setInterval(cargarStock, REFRESH_MS);
 
-// LEAD FORM
+// ─── LEAD FORM ───
 async function submitLead() {
   const name    = document.getElementById("lead-name").value.trim();
   const contact = document.getElementById("lead-contact").value.trim();
