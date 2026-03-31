@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Limbo — Masa madre artesanal</title>
+<title>Limbo — Pizza artesanal y masa madre</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -108,7 +108,7 @@
   }
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 80px; line-height: 0.95;
+    font-size: 72px; line-height: 1.0;
     font-weight: 300; color: var(--text);
     margin-bottom: 28px;
   }
@@ -173,7 +173,7 @@
 
   /* ─── PRODUCTOS ─── */
   .products-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
     background: var(--border); border: 0.5px solid var(--border);
     border-radius: 8px; overflow: hidden;
   }
@@ -419,13 +419,24 @@
   }
   .stock-card.agotado { opacity: 0.5; }
   .stock-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+  .stock-photo-wrap {
+    height: 140px;
+    margin: -36px -28px 20px;
+    width: calc(100% + 56px);
+    overflow: hidden;
+  }
+  .stock-photo {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
   .stock-product-name {
-    font-family: "Cormorant Garamond", serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 20px; font-weight: 400; color: var(--text);
     margin-bottom: 20px;
   }
   .stock-num {
-    font-family: "Cormorant Garamond", serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 64px; font-weight: 300; line-height: 1;
     color: var(--text); transition: color 0.4s;
   }
@@ -495,6 +506,7 @@
     footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
     .footer-info { text-align: left; }
     .stock-section { padding: 40px 24px; }
+    .stock-photo-wrap { margin: -36px -24px 20px; width: calc(100% + 48px); }
     .stock-grid { grid-template-columns: 1fr; }
     .stock-num { font-size: 52px; }
     .admin-fields { grid-template-columns: 1fr; }
@@ -521,11 +533,11 @@
   <div class="hero">
     <div class="hero-text">
       <p class="hero-eyebrow">Barva · Heredia · Costa Rica</p>
-      <h1 class="hero-title">Pan<br>de <em>masa<br>madre</em></h1>
-      <p class="hero-sub">Pizzas artesanales, pan, focaccia y pitas. Todo hecho a mano con fermentación lenta de 24 a 48 horas. Sin aditivos, sin apuros.</p>
+      <h1 class="hero-title">Pizza<br><em>artesanal</em><br>Pan de<br>masa madre</h1>
+      <p class="hero-sub">Pizzas artesanales de larga fermentación. Pan y pitas de masa madre, sin aditivos, sin apuros. Entregas activas en Heredia. <em style="color:var(--accent);">Primer envío gratis.</em></p>
       <div class="hero-btns">
         <a class="btn-primary" href="#menu">Ver el menú</a>
-        <a class="btn-ghost" href="#descuento">10% en tu primer pedido</a>
+        <a class="btn-ghost" href="#descuento">Primer envío gratis</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -550,44 +562,27 @@
           <img src="pizza.jpg" alt="Pizzas artesanales de masa madre" class="product-photo"/>
         </div>
         <p class="product-name">Pizza artesanal</p>
-        <p class="product-desc">Base de masa madre con fermentación lenta. Ingredientes frescos, entera o por mitad.</p>
-        <p class="product-price">₡7.500 <span>/ unidad</span></p>
-        <span class="product-tag">Viernes — domingo</span>
+        <p class="product-desc">Pizza de 12″, 8 porciones. Masa de larga fermentación con ingredientes seleccionados y frescos.</p>
+        <p class="product-price" style="font-size:13px;color:var(--text2);">Ver menú completo</p>
+        <span class="product-tag">Jueves — domingo</span>
       </div>
       <div class="product-card">
         <div class="product-photo-wrap">
           <img src="pan.jpg" alt="Pan de masa madre artesanal" class="product-photo" style="object-position: center 20%;"/>
         </div>
         <p class="product-name">Pan de masa madre</p>
-        <p class="product-desc">Hogaza rústica con corteza crujiente y miga abierta. Fermentación 24–48 horas.</p>
-        <p class="product-price">₡4.500 <span>/ hogaza</span></p>
-        <span class="product-tag">Viernes — domingo</span>
-      </div>
-      <div class="product-card">
-        <div class="product-photo-wrap" style="background:var(--bg2);display:flex;align-items:center;justify-content:center;">
-          <svg width="56" height="56" viewBox="0 0 56 56" style="opacity:0.5;">
-            <rect x="8" y="16" width="40" height="24" rx="6" fill="#c49a2a"/>
-            <rect x="8" y="16" width="40" height="24" rx="6" fill="#8B6914" opacity="0.3"/>
-            <circle cx="18" cy="25" r="2.5" fill="#5a3a08" opacity="0.8"/>
-            <circle cx="28" cy="22" r="2.5" fill="#5a3a08" opacity="0.8"/>
-            <circle cx="38" cy="25" r="2.5" fill="#5a3a08" opacity="0.8"/>
-            <circle cx="23" cy="33" r="2.5" fill="#5a3a08" opacity="0.8"/>
-            <circle cx="33" cy="33" r="2.5" fill="#5a3a08" opacity="0.8"/>
-          </svg>
-        </div>
-        <p class="product-name">Focaccia</p>
-        <p class="product-desc">Con aceite de oliva extra virgen, romero fresco y sal en escamas.</p>
-        <p class="product-price">₡3.500 <span>/ porción</span></p>
-        <span class="product-tag">Viernes — domingo</span>
+        <p class="product-desc">Hogaza rústica, corteza crujiente y miga abierta. Fermentación mínima de 20 horas.</p>
+        <p class="product-price">₡3.500 <span>blanco</span> · ₡4.000 <span>integral</span></p>
+        <span class="product-tag">Bajo pedido · lun — dom</span>
       </div>
       <div class="product-card">
         <div class="product-photo-wrap">
           <img src="pita.jpg" alt="Pitas de masa madre" class="product-photo" style="object-position: center 60%;"/>
         </div>
         <p class="product-name">Pita de masa madre</p>
-        <p class="product-desc">Perfecta para dips, rellenos o sola con mantequilla de ajo.</p>
+        <p class="product-desc">Suaves, versátiles y perfectas para rellenar o acompañar.</p>
         <p class="product-price">₡2.000 <span>/ paquete</span></p>
-        <span class="product-tag">Viernes — domingo</span>
+        <span class="product-tag">Bajo pedido · lun — dom</span>
       </div>
     </div>
   </div>
@@ -606,21 +601,21 @@
     <h2 class="section-title">Disponibilidad<br>en tiempo real</h2>
     <div class="stock-grid">
       <div class="stock-card" id="card-pizzas">
-        <span class="stock-icon">🍕</span>
+        <div class="stock-photo-wrap"><img src="stock-pizza.jpg" alt="Pizza" class="stock-photo"/></div>
         <p class="stock-product-name">Pizza artesanal</p>
         <p class="stock-num" id="num-pizzas">—</p>
         <p class="stock-unit">unidades disponibles</p>
         <span class="stock-status" id="status-pizzas"></span>
       </div>
       <div class="stock-card" id="card-pan">
-        <span class="stock-icon">🍞</span>
+        <div class="stock-photo-wrap"><img src="stock-pan.jpg" alt="Pan" class="stock-photo"/></div>
         <p class="stock-product-name">Pan de masa madre</p>
         <p class="stock-num" id="num-pan">—</p>
         <p class="stock-unit">unidades disponibles</p>
         <span class="stock-status" id="status-pan"></span>
       </div>
       <div class="stock-card" id="card-pita">
-        <span class="stock-icon">🫓</span>
+        <div class="stock-photo-wrap"><img src="stock-pita.jpg" alt="Pita" class="stock-photo"/></div>
         <p class="stock-product-name">Pita de masa madre</p>
         <p class="stock-num" id="num-pita">—</p>
         <p class="stock-unit">unidades disponibles</p>
@@ -639,18 +634,18 @@
     <div class="steps-grid">
       <div class="step" data-num="01">
         <div class="step-num-pill">1</div>
-        <h3 class="step-title">Elige tu producto</h3>
-        <p class="step-desc">Revisá el menú y decidí qué querés. Los pedidos están disponibles los viernes, sábados y domingos. Podés escribirnos durante la semana para apartar.</p>
+        <h3 class="step-title">Elegí tu producto</h3>
+        <p class="step-desc">Revisa el menú y decide qué quieres. Las pizzas están disponibles de jueves a domingo. El pan y las pitas son bajo pedido cualquier día.</p>
       </div>
       <div class="step" data-num="02">
         <div class="step-num-pill">2</div>
         <h3 class="step-title">Escribinos por WhatsApp</h3>
-        <p class="step-desc">Contáctanos con tu pedido y dirección en Barva, Heredia. Te confirmamos disponibilidad, el monto total y la hora de entrega.</p>
+        <p class="step-desc">Escríbenos con tu pedido y dirección. Hacemos entregas en: Heredia, Barva, Santo Domingo, Santa Bárbara, San Rafael, San Isidro, Belén, Flores, San Pablo, Púcares y Vara Blanca. Para San José y Alajuela según cantidad del pedido.</p>
       </div>
       <div class="step" data-num="03">
         <div class="step-num-pill">3</div>
         <h3 class="step-title">Recibís tu pedido</h3>
-        <p class="step-desc">Delivery en Barva, Heredia. Todo recién hecho — con el aroma y la textura de la verdadera masa madre.</p>
+        <p class="step-desc">Todo sale recién hecho — con el aroma y la textura de la verdadera masa madre. Tu primer envío es gratis.</p>
       </div>
     </div>
     <a class="wa-cta" href="https://wa.me/50600000000" target="_blank" style="margin: 0 auto;">
@@ -670,7 +665,7 @@
     <div class="dia"><p class="dia-name">Lun</p><p class="dia-status">Por pedido</p></div>
     <div class="dia"><p class="dia-name">Mar</p><p class="dia-status">Por pedido</p></div>
     <div class="dia"><p class="dia-name">Mié</p><p class="dia-status">Por pedido</p></div>
-    <div class="dia"><p class="dia-name">Jue</p><p class="dia-status">Por pedido</p></div>
+    <div class="dia active"><p class="dia-name">Jue</p><p class="dia-status">Abierto</p></div>
     <div class="dia active"><p class="dia-name">Vie</p><p class="dia-status">Abierto</p></div>
     <div class="dia active"><p class="dia-name">Sáb</p><p class="dia-status">Abierto</p></div>
     <div class="dia active"><p class="dia-name">Dom</p><p class="dia-status">Abierto</p></div>
@@ -685,20 +680,20 @@
     <div class="lead-inner">
       <div>
         <p class="section-label">Oferta de bienvenida</p>
-        <p class="lead-offer">10%<br><em>off</em><br>tu primer<br>pedido</p>
-        <p class="lead-desc">Dejanos tu teléfono o correo y te enviamos el código de descuento. Solo te contactamos cuando haya novedades o disponibilidad.</p>
+        <p class="lead-offer">Primer<br><em>envío</em><br>gratis</p>
+        <p class="lead-desc">Déjanos tu contacto y coordinamos tu primera entrega sin costo. Solo te escribimos cuando haya novedades o disponibilidad.</p>
       </div>
       <div class="lead-form" id="lead-form-wrap">
-        <p class="lead-form-title">Obtené tu descuento</p>
-        <p class="lead-form-sub">Sin spam. Podés darte de baja cuando quieras.</p>
+        <p class="lead-form-title">Registrá tu primer envío gratis</p>
+        <p class="lead-form-sub">Sin spam. Te contactamos solo para coordinar tu pedido.</p>
         <input class="form-field" type="text" id="lead-name" placeholder="Tu nombre" autocomplete="off"/>
         <input class="form-field" type="text" id="lead-contact" placeholder="Teléfono o correo electrónico" autocomplete="off"/>
-        <button class="form-submit" onclick="submitLead()">Quiero mi 10% de descuento</button>
+        <button class="form-submit" onclick="submitLead()">Quiero mi primer envío gratis</button>
         <p class="form-disclaimer">Al enviar aceptás recibir mensajes ocasionales de Limbo sobre pedidos y novedades.</p>
       </div>
       <div class="success-msg" id="success-msg">
-        ¡Listo! Te enviamos tu código de descuento pronto.<br>
-        <span style="font-size:12px;opacity:0.7;margin-top:6px;display:block;">Revisá tu WhatsApp o correo.</span>
+        ¡Listo! Te contactamos pronto para coordinar tu primer envío gratis.<br>
+        <span style="font-size:12px;opacity:0.7;margin-top:6px;display:block;">Revisa tu WhatsApp o correo.</span>
       </div>
     </div>
   </div>
@@ -711,8 +706,7 @@
   <div class="about-inner">
     <div>
       <p class="section-label">Quiénes somos</p>
-      <p class="about-quote">"Somos tres hermanos que decidieron hacer de la masa madre un oficio."</p>
-      <p class="about-body">Desde Santa Lucía, Barva, Heredia, elaboramos cada pieza con fermentación lenta. Sin aditivos, sin apuros — solo harina, agua, sal y tiempo. Cada hogaza, cada pizza, cada focaccia es el resultado de más de 24 horas de proceso artesanal.</p>
+      <p class="about-body" style="font-size:16px;line-height:1.9;">Somos tres hermanos que crecimos con la idea de que la buena comida une. Este proyecto nace desde casa, desde lo cotidiano y desde las ganas de compartir algo esencial: comer bien, rico y de forma consciente. Nos apasiona la alimentación sana y creemos que debería ser más fácil de encontrar, de comprar y de disfrutar. Buscamos acercarnos a productos locales, reconectando con el origen de lo que comemos y honrando las manos que lo hacen posible.</p>
       <div class="about-tags">
         <span class="tag">Masa madre activa</span>
         <span class="tag">Sin conservantes</span>
@@ -739,10 +733,10 @@
         <div class="founder-card">
           <div class="founder-avatar" style="background:#4a3010;color:#c49a50;">H3</div>
           <p class="founder-name">Hermano 3</p>
-          <p class="founder-role">Entregas</p>
+          <p class="founder-role">Marketing</p>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--text3);margin-top:20px;line-height:1.7;">Nacimos con la idea de que la buena comida no tiene apuro. La masa madre nos enseñó eso: el tiempo es el ingrediente más importante.</p>
+      
     </div>
   </div>
 </section>
@@ -753,12 +747,13 @@
 <footer>
   <div>
     <p class="footer-logo">Limbo</p>
-    <p class="footer-tagline">Masa madre artesanal · Barva, Heredia</p>
+    <p class="footer-tagline">Pizza artesanal · Pan de masa madre</p>
   </div>
   <div class="footer-info">
-    <strong>Pedidos disponibles</strong><br>
-    Viernes, sábado y domingo<br>
-    Delivery en Barva, Heredia<br>
+    <strong>Pizzas:</strong> jue — dom · <strong>Pan y pitas:</strong> bajo pedido<br>
+    Heredia · Barva · Sto. Domingo · Sta. Bárbara · San Rafael · San Isidro<br>
+    Belén · Flores · San Pablo · Púcares · Vara Blanca<br>
+    San José y Alajuela según cantidad del pedido<br>
     <a href="https://wa.me/50600000000" style="color:var(--accent);text-decoration:none;">WhatsApp: +506 0000-0000</a>
   </div>
 </footer>
@@ -823,7 +818,7 @@ async function submitLead() {
   const name    = document.getElementById("lead-name").value.trim();
   const contact = document.getElementById("lead-contact").value.trim();
   const btn     = document.querySelector(".form-submit");
-  if (!name || !contact) { alert("Por favor completá tu nombre y contacto."); return; }
+  if (!name || !contact) { alert("Por favor completa tu nombre y contacto."); return; }
   btn.textContent = "Enviando...";
   btn.disabled = true;
   try {
@@ -837,7 +832,7 @@ async function submitLead() {
       document.getElementById("success-msg").style.display   = "block";
     } else { throw new Error(); }
   } catch(e) {
-    btn.textContent = "Quiero mi 10% de descuento";
+    btn.textContent = "Quiero mi primer envío gratis";
     btn.disabled = false;
     alert("Hubo un problema. Por favor intentá de nuevo.");
   }
