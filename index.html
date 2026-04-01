@@ -885,17 +885,14 @@ async function submitLead() {
 
   try {
     await fetch("https://script.google.com/macros/s/AKfycbwB1CQVetU4AQQL5ZkZ7GqdOSLukQ__HYu_9ocTYBTTjpWHy6iGcuigDXsjZYlu4vRBtw/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nombre: name,
-        telefono: contact,
-        direccion: "",
-        pedido: ""
-      })
-    });
+  method: "POST",
+  body: new URLSearchParams({
+    nombre: name,
+    telefono: contact,
+    direccion: "",
+    pedido: ""
+  })
+});
 
     document.getElementById("lead-form-wrap").style.display = "none";
     document.getElementById("success-msg").style.display    = "block";
