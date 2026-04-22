@@ -35,6 +35,27 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
+  /* ─── TABS DE DÍAS ─── */
+.dias-tabs {
+  display: flex; gap: 8px; margin-bottom: 28px;
+}
+.dia-tab {
+  padding: 10px 24px; border-radius: 4px; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: transparent; color: var(--text2);
+  border: 0.5px solid var(--border2);
+  transition: all 0.2s;
+}
+.dia-tab:hover { color: var(--text); border-color: var(--text2); }
+.dia-tab.active {
+  background: var(--accent); color: var(--dark);
+  border-color: var(--accent); font-weight: 500;
+}
+@media (max-width: 768px) {
+  .dias-tabs { flex-wrap: wrap; }
+  .dia-tab { flex: 1; text-align: center; padding: 12px 8px; }
+}
 
   /* ─── NOISE TEXTURE OVERLAY ─── */
   body::before {
@@ -649,14 +670,23 @@
 <div class="divider"></div>
 
 <!-- DISPONIBILIDAD / STOCK COUNTER -->
+<!-- DISPONIBILIDAD / STOCK COUNTER -->
 <section id="disponibilidad">
   <div class="stock-section">
     <div class="stock-live-badge">
       <span class="stock-live-dot"></span>
       Actualizado hoy
     </div>
-    <p class="section-label">Lo que queda hoy</p>
-    <h2 class="section-title">Disponibilidad<br>en tiempo real</h2>
+    <p class="section-label">Lo que queda este fin de semana</p>
+    <h2 class="section-title">Disponibilidad<br>por día</h2>
+
+    <!-- Pestañas de días -->
+    <div class="dias-tabs" id="dias-tabs">
+      <button class="dia-tab" data-dia="viernes" onclick="cambiarDia('viernes')">Viernes</button>
+      <button class="dia-tab" data-dia="sabado"  onclick="cambiarDia('sabado')">Sábado</button>
+      <button class="dia-tab" data-dia="domingo" onclick="cambiarDia('domingo')">Domingo</button>
+    </div>
+
     <div class="stock-grid">
       <div class="stock-card" id="card-pizzas">
         <div class="stock-photo-wrap"><img src="stock-pizza.jpg" alt="Pizza" class="stock-photo"/></div>
@@ -815,8 +845,29 @@
 <script>
 
 // ─── STOCK ───
+// ─── STOCK ───
 const UMBRAL_POCO = 3;
 const REFRESH_MS  = 30000;
+let stockData     = {};  // guarda todos los días
+let diaActivo     = "viernes";
+
+function diaDeHoy() {
+  const dow = new Date().getDay(); // 0=dom,5=vie,6=sab
+  if (dow === 5) return "viernes";
+  if (dow === 6) return "sabado";
+  if (dow === 0) return "domingo";
+  return "viernes"; // fuera del fin de semana, muestra viernes por defecto
+}
+
+function cambiarDia(dia) {
+  diaActivo = dia;
+  // Actualizar pestañas
+  document.querySelectorAll(".dia-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.dia === dia);
+  });
+  // Renderizar stock del día seleccionado
+  if (stockData[dia]) renderStock(stockData[dia]);
+}
 
 function renderStock(data) {
   const productos = [
@@ -834,7 +885,7 @@ function renderStock(data) {
     cardEl.classList.remove("agotado");
     if (n === 0) {
       numEl.classList.add("cero");
-      stEl.textContent = "Agotado hoy";
+      stEl.textContent = "Agotado";
       stEl.className   = "stock-status cero";
       cardEl.classList.add("agotado");
     } else if (n <= UMBRAL_POCO) {
@@ -849,15 +900,18 @@ function renderStock(data) {
   const ahora = new Date();
   const hora  = ahora.toLocaleTimeString("es-CR", { hour: "2-digit", minute: "2-digit" });
   const fec   = ahora.toLocaleDateString("es-CR",  { weekday: "long", day: "numeric", month: "long" });
-  document.getElementById("stock-last-update").textContent = "Última actualización: " + hora + " · " + fec;
+  document.getElementById("stock-last-update").textContent =
+    "Última actualización: " + hora + " · " + fec;
 }
 
 async function cargarStock() {
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztsT9hoFCBOf_Kr38UcHaHFuFBp3wR-s2AMW4Z5v3phYRQKr9CFq_4RIv-yrU0_XH2/exec";
   try {
     const res  = await fetch(SCRIPT_URL);
-    const data = await res.json();
-    renderStock(data);
+    stockData  = await res.json();
+    // Al cargar, mostrar el día de hoy si es fin de semana, sino viernes
+    diaActivo  = diaDeHoy();
+    cambiarDia(diaActivo);
   } catch(e) {
     console.warn("No se pudo cargar el stock:", e);
   }
