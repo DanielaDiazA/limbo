@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Limbo — Pizza artesanal y masa madre</title>
+<title>Limbo — Pizzería y panadería de masa madre</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -35,27 +35,28 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
+
   /* ─── TABS DE DÍAS ─── */
-.dias-tabs {
-  display: flex; gap: 8px; margin-bottom: 28px;
-}
-.dia-tab {
-  padding: 10px 24px; border-radius: 4px; cursor: pointer;
-  font-family: 'Jost', sans-serif; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  background: transparent; color: var(--text2);
-  border: 0.5px solid var(--border2);
-  transition: all 0.2s;
-}
-.dia-tab:hover { color: var(--text); border-color: var(--text2); }
-.dia-tab.active {
-  background: var(--accent); color: var(--dark);
-  border-color: var(--accent); font-weight: 500;
-}
-@media (max-width: 768px) {
-  .dias-tabs { flex-wrap: wrap; }
-  .dia-tab { flex: 1; text-align: center; padding: 12px 8px; }
-}
+  .dias-tabs {
+    display: flex; gap: 8px; margin-bottom: 28px;
+  }
+  .dia-tab {
+    padding: 10px 24px; border-radius: 4px; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; color: var(--text2);
+    border: 0.5px solid var(--border2);
+    transition: all 0.2s;
+  }
+  .dia-tab:hover { color: var(--text); border-color: var(--text2); }
+  .dia-tab.active {
+    background: var(--accent); color: var(--dark);
+    border-color: var(--accent); font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .dias-tabs { flex-wrap: wrap; }
+    .dia-tab { flex: 1; text-align: center; padding: 12px 8px; }
+  }
 
   /* ─── NOISE TEXTURE OVERLAY ─── */
   body::before {
@@ -192,9 +193,20 @@
   }
   .divider { height: 0.5px; background: var(--border); margin: 0 48px; }
 
+  /* ─── ALLERGEN DISCLAIMER (footer) ─── */
+  .allergen-footer {
+    border-top: 0.5px solid var(--border);
+    padding: 14px 48px;
+    display: flex; align-items: flex-start; gap: 10px;
+    background: rgba(30, 8, 16, 0.95);
+  }
+  .allergen-footer-icon { font-size: 13px; flex-shrink: 0; margin-top: 2px; opacity: 0.7; }
+  .allergen-footer-text { font-size: 11px; color: var(--text3); line-height: 1.6; }
+  .allergen-footer-text strong { color: var(--text2); font-weight: 400; }
+
   /* ─── PRODUCTOS ─── */
   .products-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
     background: var(--border); border: 0.5px solid var(--border);
     border-radius: 8px; overflow: hidden;
   }
@@ -222,7 +234,6 @@
     transition: transform 0.4s ease;
   }
   .product-card:hover .product-photo { transform: scale(1.04); }
-  .product-photo.pita { object-position: center 30%; }
   .product-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px; font-weight: 400; color: var(--text);
@@ -246,6 +257,17 @@
     font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
     background: var(--green); color: var(--green3);
     padding: 3px 10px; border-radius: 20px;
+  }
+  .product-bullets {
+    list-style: none; margin-bottom: 16px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .product-bullets li {
+    font-size: 12px; color: var(--text2);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .product-bullets li::before {
+    content: '·'; color: var(--accent); flex-shrink: 0; line-height: 1.5;
   }
 
   /* ─── PROCESO ─── */
@@ -463,7 +485,7 @@
   }
   @keyframes stock-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
   .stock-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
     background: var(--border); border: 0.5px solid var(--border);
     border-radius: 8px; overflow: hidden;
   }
@@ -506,66 +528,106 @@
   .stock-status.poco { background: rgba(189,104,9,0.2); color: var(--accent); border: 0.5px solid rgba(189,104,9,0.3); }
   .stock-status.cero { background: rgba(227,218,205,0.05); color: var(--text3); border: 0.5px solid var(--border); }
   .stock-last-update { font-size: 11px; color: var(--text3); margin-top: 28px; text-align: right; }
-  .admin-pass-wrap { display: flex; gap: 12px; margin-bottom: 20px; }
-  .admin-pass-wrap input {
-    flex: 1; padding: 10px 16px;
-    background: rgba(227,218,205,0.06);
-    border: 0.5px solid var(--border2); border-radius: 4px;
-    color: var(--text); font-family: "Jost", sans-serif; font-size: 13px;
-    outline: none;
-  }
-  .admin-pass-wrap input:focus { border-color: var(--accent); }
-  .admin-pass-wrap button {
-    background: transparent; color: var(--text2);
-    border: 0.5px solid var(--border2); padding: 10px 20px; border-radius: 4px;
-    font-family: "Jost", sans-serif; font-size: 12px; letter-spacing: 0.08em;
-    text-transform: uppercase; cursor: pointer; transition: all 0.2s;
-  }
-  .admin-pass-wrap button:hover { border-color: var(--text2); color: var(--text); }
   #admin-locked { display: block; }
   #admin-controls { display: none; }
 
+  /* ─── TABLET ─── */
+  @media (max-width: 1024px) {
+    .stock-grid { grid-template-columns: repeat(2, 1fr); }
+    .stock-card { padding: 28px 20px; }
+    .stock-photo-wrap { margin: -28px -20px 16px; width: calc(100% + 40px); }
+  }
+
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
-    nav { padding: 0 20px; }
+    /* Nav */
+    nav { padding: 0 20px; height: 56px; }
     .nav-links { display: none; }
-    .hero { padding: 60px 24px 60px; min-height: 80vh; }
-    .hero-visual { display: block; }
-    .hero-title { font-size: 52px; line-height: 0.95; margin-bottom: 20px; }
-    .hero::after { background: linear-gradient(to top, rgba(61,10,30,0.94) 0%, rgba(61,10,30,0.82) 35%, rgba(61,10,30,0.55) 60%, rgba(61,10,30,0.25) 85%, rgba(61,10,30,0.1) 100%); }
-    .hero-text { position: relative; z-index: 2; max-width: 520px; }
-    .hero-eyebrow { margin-bottom: 14px; }
-    .hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
+    .nav-logo { font-size: 24px; }
+    .nav-wa { font-size: 11px; padding: 8px 14px; }
+
+    /* Hero */
+    .hero { padding: 48px 20px 56px; min-height: 88vh; align-items: flex-end; }
+    .hero::after { background: linear-gradient(to top, rgba(30,6,16,0.97) 0%, rgba(30,6,16,0.85) 30%, rgba(30,6,16,0.55) 55%, rgba(30,6,16,0.15) 80%, transparent 100%); }
+    .hero-text { max-width: 100%; }
+    .hero-eyebrow { font-size: 10px; margin-bottom: 12px; }
+    .hero-title { font-size: 44px; line-height: 1.0; margin-bottom: 16px; }
+    .hero-sub { font-size: 13px; margin-bottom: 24px; max-width: 100%; line-height: 1.7; }
     .hero-btns { flex-direction: column; gap: 10px; }
-    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 16px 24px; font-size: 13px; }
-    .section-inner, .dias-section { padding: 40px 24px; }
-    .section-title { font-size: 36px; margin-bottom: 28px; }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 18px 24px; font-size: 13px; border-radius: 6px; }
+
+    /* Sections */
+    .section-inner { padding: 40px 20px; }
+    .dias-section { padding: 0 20px 48px; }
+    .section-label { font-size: 10px; }
+    .section-title { font-size: 32px; margin-bottom: 24px; }
+    .divider { margin: 0 20px; }
+
+    /* Products — 1 col full on phone */
     .products-grid { grid-template-columns: 1fr; }
     .product-card { padding: 20px 16px; overflow: hidden; }
-    .product-photo-wrap { margin: -20px -16px 16px; width: calc(100% + 32px); }
-    .product-name { font-size: 18px; }
-    .steps-grid { grid-template-columns: 1fr; gap: 14px; }
-    .step { padding: 24px 20px; }
-    .wa-cta { width: 100%; justify-content: center; margin: 0; }
-    .lead-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 28px; }
-    .lead-offer { font-size: 52px; }
-    .about-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
-    .about-quote { font-size: 24px; }
-    .founders-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .dias-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .dia { padding: 14px 6px; }
-    .dia-name { font-size: 10px; }
-    .dia-status { font-size: 10px; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
-    .footer-info { text-align: left; }
-    .stock-section { padding: 40px 24px; }
-    .stock-photo-wrap { margin: -36px -24px 20px; width: calc(100% + 48px); }
+    .product-photo-wrap { height: 200px; margin: -20px -16px 18px; width: calc(100% + 32px); }
+    .product-name { font-size: 20px; }
+    .product-desc { font-size: 13px; }
+    .product-price { font-size: 18px; }
+
+    /* Steps */
+    .steps-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
+    .step { padding: 20px 18px; }
+    .step::before { font-size: 56px; }
+    .step-title { font-size: 18px; }
+    .step-desc { font-size: 13px; }
+    .wa-cta { width: 100%; justify-content: center; margin: 0; padding: 20px 24px; }
+
+    /* Lead */
+    .lead-inner { grid-template-columns: 1fr; padding: 40px 20px; gap: 28px; }
+    .lead-offer { font-size: 48px; line-height: 1.0; }
+    .lead-desc { font-size: 13px; }
+    .form-field { padding: 15px 16px; font-size: 16px; /* prevent iOS zoom */ }
+    .form-submit { padding: 16px; font-size: 13px; }
+
+    /* About */
+    .about-inner { grid-template-columns: 1fr; padding: 40px 20px; gap: 28px; }
+    .about-body { font-size: 14px !important; }
+    .founders-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .founder-card { padding: 16px 10px; }
+    .founder-name { font-size: 12px; }
+    .founder-role { font-size: 10px; }
+
+    /* Días semana */
+    .dias-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 20px; }
+    .dia { padding: 12px 4px; }
+    .dia-name { font-size: 9px; }
+    .dia-status { font-size: 9px; }
+
+    /* Stock — 2x2 grid on mobile */
+    .stock-section { padding: 36px 20px; }
+    .stock-grid { grid-template-columns: repeat(2, 1fr); }
+    .stock-card { padding: 24px 16px; }
+    .stock-photo-wrap { height: 110px; margin: -24px -16px 14px; width: calc(100% + 32px); }
+    .stock-product-name { font-size: 16px; margin-bottom: 12px; }
+    .stock-num { font-size: 44px; }
+    .stock-unit { font-size: 10px; }
+    .stock-status { font-size: 9px; padding: 3px 8px; }
+    .stock-last-update { font-size: 10px; margin-top: 16px; }
+
+    /* Menu */
+    .menu-completo-inner { padding: 40px 20px; }
+    .menu-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Footer */
+    footer { padding: 28px 20px; flex-direction: column; gap: 20px; align-items: flex-start; }
+    .footer-logo { font-size: 28px; }
+    .footer-info { text-align: left; font-size: 12px; }
+    .allergen-footer { padding: 14px 20px; }
+  }
+
+  /* ─── SMALL PHONE ─── */
+  @media (max-width: 390px) {
+    .hero-title { font-size: 38px; }
+    .section-title { font-size: 28px; }
     .stock-grid { grid-template-columns: 1fr; }
-    .stock-num { font-size: 52px; }
-    .admin-fields { grid-template-columns: 1fr; }
-    .divider { margin: 0 24px; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .menu-completo-inner { padding: 40px 24px; }
+    .dias-grid { grid-template-columns: repeat(4, 1fr); }
   }
 </style>
 </head>
@@ -588,8 +650,8 @@
   <div class="hero">
     <div class="hero-text">
       <p class="hero-eyebrow">Barva · Heredia · Costa Rica</p>
-      <h1 class="hero-title">Pizza<br><em>artesanal</em><br>Pan de<br>masa madre</h1>
-      <p class="hero-sub">Pizzas artesanales de larga fermentación. Pan y pitas de masa madre, sin aditivos, sin apuros. Entregas activas en Heredia. <em style="color:var(--accent);">Primer envío gratis.</em></p>
+      <h1 class="hero-title">Pizzería<br>y<br><em>panadería</em><br>de masa madre</h1>
+      <p class="hero-sub">Pizzas de larga fermentación y panadería de masa madre. Sin aditivos, sin apuros. Entregas activas en Heredia. <em style="color:var(--accent);">Primer envío gratis.</em></p>
       <div class="hero-btns">
         <a class="btn-primary" href="#menu-completo">Ver el menú</a>
         <a class="btn-ghost" href="#descuento">Primer envío gratis</a>
@@ -612,33 +674,59 @@
     <p class="section-label">Nuestros productos</p>
     <h2 class="section-title">Hecho con tiempo<br>y con cuidado</h2>
     <div class="products-grid">
+
+      <!-- Pizza -->
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pizza.jpg" alt="Pizzas artesanales de masa madre" class="product-photo"/>
+          <img src="pizza.jpg" alt="Pizzas de masa madre" class="product-photo"/>
         </div>
-        <p class="product-name">Pizza artesanal</p>
+        <p class="product-name">Pizza</p>
         <p class="product-desc">Pizza de 12″, 8 porciones. Masa de larga fermentación con ingredientes seleccionados y frescos.</p>
         <p class="product-price" style="font-size:13px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;"><a href="#menu-completo" style="color:inherit;text-decoration:inherit;">Ver menú completo →</a></p>
         <span class="product-tag">Jueves — domingo</span>
       </div>
+
+      <!-- Pan de masa madre -->
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pan.jpg" alt="Pan de masa madre artesanal" class="product-photo" style="object-position: center 20%;"/>
+          <img src="pan.jpg" alt="Pan de masa madre" class="product-photo" style="object-position: center 20%;"/>
         </div>
         <p class="product-name">Pan de masa madre</p>
         <p class="product-desc">Hogaza rústica, corteza crujiente y miga abierta. Fermentación mínima de 20 horas.</p>
         <p class="product-price">₡3.500 <span>blanco</span> · ₡4.000 <span>integral</span></p>
         <span class="product-tag">Bajo pedido · lun — dom</span>
       </div>
+
+      <!-- Hogaza con chocolate -->
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pita.jpg" alt="Pitas de masa madre" class="product-photo" style="object-position: center 60%;"/>
+          <img src="hogaza-chocolate.jpg" alt="Hogaza con chocolate y Nutella" class="product-photo"/>
         </div>
-        <p class="product-name">Pita de masa madre</p>
-        <p class="product-desc">Suaves, versátiles y perfectas para rellenar o acompañar.</p>
-        <p class="product-price">₡3.000 <span>/ paquete</span></p>
+        <p class="product-name">Hogaza con chocolate</p>
+        <p class="product-desc">Pan de miga suave y ligeramente dulce, enriquecido con mantequilla, con vetas de Nutella y chispas de chocolate fundidas.</p>
+        <ul class="product-bullets">
+          <li>Equilibrio entre masa madre, mantequilla y dulzor profundo de chocolate</li>
+          <li>20 horas de fermentación</li>
+        </ul>
+        <p class="product-price">₡6.000</p>
         <span class="product-tag">Bajo pedido · lun — dom</span>
       </div>
+
+      <!-- Bagels -->
+      <div class="product-card">
+        <div class="product-photo-wrap">
+          <img src="bagels.jpg" alt="Bagels de masa madre" class="product-photo"/>
+        </div>
+        <p class="product-name">Bagels</p>
+        <p class="product-desc">Pan en forma de anillo, corteza dorada con interior suave, elástico y lleno de sabor. Elaborados con masa madre y hervidos antes de hornear.</p>
+        <ul class="product-bullets">
+          <li>Sabor profundo, ligeramente dulce y fermentado naturalmente</li>
+          <li>12 horas de fermentación</li>
+        </ul>
+        <p class="product-price">₡4.900 <span>/ 5 unidades</span></p>
+        <span class="product-tag">Bajo pedido · lun — dom</span>
+      </div>
+
     </div>
   </div>
 </section>
@@ -652,7 +740,7 @@
     <div class="menu-header">
       <p class="section-label" style="justify-content:center;">Menú completo</p>
       <h2 class="section-title">Todas las opciones y precios</h2>
-      <p class="menu-desc">Pizzas de 12″, pan de masa madre blanco o integral, y pitas integrales. Todo hecho bajo pedido.</p>
+      <p class="menu-desc">Pizzas de 12″, pan de masa madre blanco o integral, hogaza con chocolate, bagels de masa madre. Todo hecho bajo pedido.</p>
     </div>
 
     <div class="menu-grid">
@@ -660,7 +748,7 @@
         <img src="menu-1.jpg" alt="Menú Limbo — Pizzas"/>
       </div>
       <div class="menu-image-item">
-        <img src="menu-2.jpg" alt="Menú Limbo — Panes y pitas"/>
+        <img src="menu-2.jpg" alt="Menú Limbo — Panes y bagels"/>
       </div>
     </div>
 
@@ -669,7 +757,6 @@
 
 <div class="divider"></div>
 
-<!-- DISPONIBILIDAD / STOCK COUNTER -->
 <!-- DISPONIBILIDAD / STOCK COUNTER -->
 <section id="disponibilidad">
   <div class="stock-section">
@@ -690,24 +777,31 @@
     <div class="stock-grid">
       <div class="stock-card" id="card-pizzas">
         <div class="stock-photo-wrap"><img src="stock-pizza.jpg" alt="Pizza" class="stock-photo"/></div>
-        <p class="stock-product-name">Pizza artesanal</p>
+        <p class="stock-product-name">Pizza</p>
         <p class="stock-num" id="num-pizzas">—</p>
         <p class="stock-unit">unidades disponibles</p>
         <span class="stock-status" id="status-pizzas"></span>
       </div>
       <div class="stock-card" id="card-pan">
-        <div class="stock-photo-wrap"><img src="stock-pan.jpg" alt="Pan" class="stock-photo"/></div>
+        <div class="stock-photo-wrap"><img src="stock-pan.jpg" alt="Pan de masa madre" class="stock-photo"/></div>
         <p class="stock-product-name">Pan de masa madre</p>
         <p class="stock-num" id="num-pan">—</p>
         <p class="stock-unit">unidades disponibles</p>
         <span class="stock-status" id="status-pan"></span>
       </div>
-      <div class="stock-card" id="card-pita">
-        <div class="stock-photo-wrap"><img src="stock-pita.jpg" alt="Pita" class="stock-photo" style="object-position: center 55%;"/></div>
-        <p class="stock-product-name">Pita de masa madre</p>
-        <p class="stock-num" id="num-pita">—</p>
+      <div class="stock-card" id="card-hogaza-chocolate">
+        <div class="stock-photo-wrap"><img src="hogaza-chocolate.jpg" alt="Hogaza con chocolate" class="stock-photo"/></div>
+        <p class="stock-product-name">Hogaza con chocolate</p>
+        <p class="stock-num" id="num-hogaza-chocolate">—</p>
         <p class="stock-unit">unidades disponibles</p>
-        <span class="stock-status" id="status-pita"></span>
+        <span class="stock-status" id="status-hogaza-chocolate"></span>
+      </div>
+      <div class="stock-card" id="card-bagels">
+        <div class="stock-photo-wrap"><img src="bagels.jpg" alt="Bagels" class="stock-photo"/></div>
+        <p class="stock-product-name">Bagels</p>
+        <p class="stock-num" id="num-bagels">—</p>
+        <p class="stock-unit">paquetes disponibles</p>
+        <span class="stock-status" id="status-bagels"></span>
       </div>
     </div>
     <p class="stock-last-update" id="stock-last-update"></p>
@@ -723,12 +817,12 @@
       <div class="step" data-num="01">
         <div class="step-num-pill">1</div>
         <h3 class="step-title">Elige tu producto</h3>
-        <p class="step-desc">Revisa el menú y decide qué quieres. Las pizzas están disponibles de jueves a domingo. El pan y las pitas son bajo pedido cualquier día.</p>
+        <p class="step-desc">Revisa el menú y decide qué quieres. Las pizzas están disponibles de jueves a domingo. El pan, hogaza con chocolate y bagels son bajo pedido cualquier día.</p>
       </div>
       <div class="step" data-num="02">
         <div class="step-num-pill">2</div>
         <h3 class="step-title">Escríbenos por WhatsApp</h3>
-        <p class="step-desc">Escríbenos con tu pedido y dirección. Hacemos entregas en: Heredia, Barva, Santo Domingo, Santa Bárbara, San Rafael, San Isidro, Belén, Flores y San Pablo. Para San José y Alajuela según cantidad del pedido.</p>
+        <p class="step-desc">Escríbenos con tu pedido y dirección. Hacemos entregas en: Heredia, Barva, Santo Domingo, Santa Bárbara, San Rafael, San Isidro, Belén, Flores y San Pablo. Para San José y Alajuela según cantidad del pedido. <strong style="color:var(--accent);">Si tenés alguna alergia alimentaria, indicalo en tu mensaje.</strong></p>
       </div>
       <div class="step" data-num="03">
         <div class="step-num-pill">3</div>
@@ -827,30 +921,35 @@
 
 <div class="divider"></div>
 
+<!-- ALLERGEN DISCLAIMER -->
+<div class="allergen-footer">
+  <span class="allergen-footer-icon">⚠</span>
+  <p class="allergen-footer-text"><strong>Alergias alimentarias:</strong> Si tenés alguna alergia o intolerancia, por favor indicalo al momento de hacer tu pedido. Todos nuestros productos se elaboran en el mismo espacio.</p>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div>
     <p class="footer-logo">Limbo</p>
-    <p class="footer-tagline">Pizza artesanal · Pan de masa madre</p>
+    <p class="footer-tagline">Pizzería · Panadería de masa madre</p>
   </div>
   <div class="footer-info">
-  <strong>Pizzas:</strong> vie — dom · <strong>Pan y pitas:</strong> bajo pedido<br>
-  Heredia · Barva · Sto. Domingo · Sta. Bárbara · San Rafael · San Isidro<br>
-  Belén · Flores · San Pablo<br>
-  San José y Alajuela según cantidad del pedido<br>
-  <a href="https://wa.me/50686247881" style="color:var(--accent);text-decoration:none;">WhatsApp: +506 8624 7881</a>
-  <br>
-  <a href="https://instagram.com/limbo_costarica" target="_blank" style="color:var(--accent);text-decoration:none;">Instagram: @limbo_costarica</a>
-</div>
+    <strong>Pizzas:</strong> vie — dom · <strong>Panadería:</strong> bajo pedido<br>
+    Heredia · Barva · Sto. Domingo · Sta. Bárbara · San Rafael · San Isidro<br>
+    Belén · Flores · San Pablo<br>
+    San José y Alajuela según cantidad del pedido<br>
+    <a href="https://wa.me/50686247881" style="color:var(--accent);text-decoration:none;">WhatsApp: +506 8624 7881</a>
+    <br>
+    <a href="https://instagram.com/limbo_costarica" target="_blank" style="color:var(--accent);text-decoration:none;">Instagram: @limbo_costarica</a>
+  </div>
 </footer>
 
 <script>
 
 // ─── STOCK ───
-// ─── STOCK ───
 const UMBRAL_POCO = 3;
 const REFRESH_MS  = 30000;
-let stockData     = {};  // guarda todos los días
+let stockData     = {};
 let diaActivo     = "viernes";
 
 function diaDeHoy() {
@@ -858,24 +957,23 @@ function diaDeHoy() {
   if (dow === 5) return "viernes";
   if (dow === 6) return "sabado";
   if (dow === 0) return "domingo";
-  return "viernes"; // fuera del fin de semana, muestra viernes por defecto
+  return "viernes";
 }
 
 function cambiarDia(dia) {
   diaActivo = dia;
-  // Actualizar pestañas
   document.querySelectorAll(".dia-tab").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.dia === dia);
   });
-  // Renderizar stock del día seleccionado
   if (stockData[dia]) renderStock(stockData[dia]);
 }
 
 function renderStock(data) {
   const productos = [
-    { key: "pizzas", numId: "num-pizzas", statusId: "status-pizzas", cardId: "card-pizzas" },
-    { key: "pan",    numId: "num-pan",    statusId: "status-pan",    cardId: "card-pan"    },
-    { key: "pita",   numId: "num-pita",   statusId: "status-pita",   cardId: "card-pita"   },
+    { key: "pizzas",             numId: "num-pizzas",             statusId: "status-pizzas",             cardId: "card-pizzas"             },
+    { key: "pan",                numId: "num-pan",                statusId: "status-pan",                cardId: "card-pan"                },
+    { key: "hogaza-chocolate",   numId: "num-hogaza-chocolate",   statusId: "status-hogaza-chocolate",   cardId: "card-hogaza-chocolate"   },
+    { key: "bagels",             numId: "num-bagels",             statusId: "status-bagels",             cardId: "card-bagels"             },
   ];
   productos.forEach(p => {
     const n      = data[p.key] !== undefined ? parseInt(data[p.key]) : 0;
@@ -907,11 +1005,10 @@ function renderStock(data) {
 }
 
 async function cargarStock() {
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6irR88N7Z-1Q0yeDRm-2MJQQLYXp4Yx-CS2K3lWKs8ufsKwxFY3UMuGJS642t3-cK/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHK8IcyuXQEqh9DofWArh647oKgDUXkDE0SfBftItUmx9ltHsuYjK0zvjL-0kc5q8O/exec";
   try {
     const res  = await fetch(SCRIPT_URL);
     stockData  = await res.json();
-    // Al cargar, mostrar el día de hoy si es fin de semana, sino viernes
     diaActivo  = diaDeHoy();
     cambiarDia(diaActivo);
   } catch(e) {
@@ -938,14 +1035,14 @@ async function submitLead() {
 
   try {
     await fetch("https://script.google.com/macros/s/AKfycbwB1CQVetU4AQQL5ZkZ7GqdOSLukQ__HYu_9ocTYBTTjpWHy6iGcuigDXsjZYlu4vRBtw/exec", {
-  method: "POST",
-  body: new URLSearchParams({
-    nombre: name,
-    telefono: contact,
-    direccion: "",
-    pedido: ""
-  })
-});
+      method: "POST",
+      body: new URLSearchParams({
+        nombre: name,
+        telefono: contact,
+        direccion: "",
+        pedido: ""
+      })
+    });
 
     document.getElementById("lead-form-wrap").style.display = "none";
     document.getElementById("success-msg").style.display    = "block";
