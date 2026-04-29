@@ -221,7 +221,7 @@
     width: 56px; height: 56px; margin-bottom: 20px;
   }
   .product-photo-wrap {
-    height: 180px;
+    height: 220px;
     margin: -32px -28px 20px;
     width: calc(100% + 56px);
     overflow: hidden;
@@ -229,7 +229,7 @@
   }
   .product-photo {
     width: 100%; height: 100%;
-    object-fit: cover; object-position: center top;
+    object-fit: cover; object-position: center center;
     display: block;
     transition: transform 0.4s ease;
   }
@@ -496,14 +496,14 @@
   .stock-card.agotado { opacity: 0.5; }
   .stock-icon { font-size: 28px; margin-bottom: 20px; display: block; }
   .stock-photo-wrap {
-    height: 140px;
+    height: 180px;
     margin: -36px -28px 20px;
     width: calc(100% + 56px);
     overflow: hidden;
   }
   .stock-photo {
     width: 100%; height: 100%;
-    object-fit: cover; object-position: center;
+    object-fit: cover; object-position: center center;
     display: block;
   }
   .stock-product-name {
@@ -566,7 +566,7 @@
     /* Products — 1 col full on phone */
     .products-grid { grid-template-columns: 1fr; }
     .product-card { padding: 20px 16px; overflow: hidden; }
-    .product-photo-wrap { height: 200px; margin: -20px -16px 18px; width: calc(100% + 32px); }
+    .product-photo-wrap { height: 240px; margin: -20px -16px 18px; width: calc(100% + 32px); }
     .product-name { font-size: 20px; }
     .product-desc { font-size: 13px; }
     .product-price { font-size: 18px; }
@@ -604,7 +604,7 @@
     .stock-section { padding: 36px 20px; }
     .stock-grid { grid-template-columns: repeat(2, 1fr); }
     .stock-card { padding: 24px 16px; }
-    .stock-photo-wrap { height: 110px; margin: -24px -16px 14px; width: calc(100% + 32px); }
+    .stock-photo-wrap { height: 160px; margin: -24px -16px 14px; width: calc(100% + 32px); }
     .stock-product-name { font-size: 16px; margin-bottom: 12px; }
     .stock-num { font-size: 44px; }
     .stock-unit { font-size: 10px; }
@@ -689,7 +689,7 @@
       <!-- Pan de masa madre -->
       <div class="product-card">
         <div class="product-photo-wrap">
-          <img src="pan.jpg" alt="Pan de masa madre" class="product-photo" style="object-position: center 20%;"/>
+          <img src="pan.jpg" alt="Pan de masa madre" class="product-photo"/>
         </div>
         <p class="product-name">Pan de masa madre</p>
         <p class="product-desc">Hogaza rústica, corteza crujiente y miga abierta. Fermentación mínima de 20 horas.</p>
