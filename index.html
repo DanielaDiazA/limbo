@@ -312,56 +312,6 @@
   .wa-cta-text { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green3); }
   .wa-cta-sub { font-size: 11px; color: rgba(127,196,154,0.6); margin-top: 2px; }
 
-  /* ─── LEAD MAGNET ─── */
-  .lead-section {
-    background: var(--bg3);
-    border-top: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .lead-inner {
-    padding: 80px 48px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  }
-  .lead-offer {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 68px; line-height: 0.95;
-    font-weight: 300; color: var(--text);
-  }
-  .lead-offer em { font-style: italic; color: var(--accent); }
-  .lead-desc {
-    font-size: 14px; color: var(--text2); margin-top: 16px; line-height: 1.7;
-  }
-  .lead-form { display: flex; flex-direction: column; gap: 14px; }
-  .lead-form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px; color: var(--text); margin-bottom: 4px;
-  }
-  .lead-form-sub { font-size: 13px; color: var(--text2); margin-bottom: 8px; }
-  .form-field {
-    width: 100%; padding: 13px 16px;
-    background: rgba(227,218,205,0.06);
-    border: 0.5px solid var(--border2);
-    border-radius: 4px; color: var(--text);
-    font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
-    outline: none; transition: border-color 0.2s;
-  }
-  .form-field::placeholder { color: var(--text3); }
-  .form-field:focus { border-color: var(--accent); }
-  .form-submit {
-    background: var(--accent); color: var(--dark);
-    border: none; padding: 14px; border-radius: 4px;
-    font-family: 'Jost', sans-serif; font-size: 13px;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .form-submit:hover { background: var(--accent2); }
-  .form-disclaimer { font-size: 11px; color: var(--text3); line-height: 1.6; }
-  .success-msg {
-    display: none; text-align: center; padding: 24px;
-    background: var(--green); border-radius: 8px;
-    color: var(--green3); font-size: 14px;
-  }
-
   /* ─── NOSOTROS ─── */
   .about-inner {
     padding: 80px 48px;
@@ -579,13 +529,6 @@
     .step-desc { font-size: 13px; }
     .wa-cta { width: 100%; justify-content: center; margin: 0; padding: 20px 24px; }
 
-    /* Lead */
-    .lead-inner { grid-template-columns: 1fr; padding: 40px 20px; gap: 28px; }
-    .lead-offer { font-size: 48px; line-height: 1.0; }
-    .lead-desc { font-size: 13px; }
-    .form-field { padding: 15px 16px; font-size: 16px; /* prevent iOS zoom */ }
-    .form-submit { padding: 16px; font-size: 13px; }
-
     /* About */
     .about-inner { grid-template-columns: 1fr; padding: 40px 20px; gap: 28px; }
     .about-body { font-size: 14px !important; }
@@ -651,10 +594,9 @@
     <div class="hero-text">
       <p class="hero-eyebrow">Barva · Heredia · Costa Rica</p>
       <h1 class="hero-title">Pizzería<br>y<br><em>panadería</em><br>de masa madre</h1>
-      <p class="hero-sub">Pizzas de larga fermentación y panadería de masa madre. Sin aditivos, sin apuros. Entregas activas en Heredia. <em style="color:var(--accent);">Primer envío gratis.</em></p>
+      <p class="hero-sub">Pizzas de larga fermentación y panadería de masa madre. Sin aditivos, sin apuros. Entregas activas en Heredia.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="#menu-completo">Ver el menú</a>
-        <a class="btn-ghost" href="#descuento">Primer envío gratis</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -827,7 +769,7 @@
       <div class="step" data-num="03">
         <div class="step-num-pill">3</div>
         <h3 class="step-title">Recibís tu pedido</h3>
-        <p class="step-desc">Todo sale recién hecho — con el aroma y la textura de la verdadera masa madre. Tu primer envío es gratis.</p>
+        <p class="step-desc">Todo sale recién hecho — con el aroma y la textura de la verdadera masa madre.</p>
       </div>
     </div>
     <a class="wa-cta" href="https://wa.me/50686247881" target="_blank" style="margin: 0 auto;">
@@ -853,33 +795,6 @@
     <div class="dia active"><p class="dia-name">Dom</p><p class="dia-status">Abierto</p></div>
   </div>
 </div>
-
-<div class="divider"></div>
-
-<!-- LEAD MAGNET -->
-<section id="descuento">
-  <div class="lead-section">
-    <div class="lead-inner">
-      <div>
-        <p class="section-label">Oferta de bienvenida</p>
-        <p class="lead-offer">Primer<br><em>envío</em><br>gratis</p>
-        <p class="lead-desc">Déjanos tu contacto y coordinamos tu primera entrega sin costo. Solo te escribimos cuando haya novedades o disponibilidad.</p>
-      </div>
-      <div class="lead-form" id="lead-form-wrap">
-        <p class="lead-form-title">Registra tu primer envío gratis</p>
-        <p class="lead-form-sub">Sin spam. Te contactamos solo para coordinar tu pedido.</p>
-        <input class="form-field" type="text" id="lead-name" placeholder="Tu nombre" autocomplete="off"/>
-        <input class="form-field" type="text" id="lead-contact" placeholder="Teléfono o correo electrónico" autocomplete="off"/>
-        <button class="form-submit" onclick="submitLead()">Quiero mi primer envío gratis</button>
-        <p class="form-disclaimer">Al enviar aceptás recibir mensajes ocasionales de Limbo sobre pedidos y novedades.</p>
-      </div>
-      <div class="success-msg" id="success-msg">
-        ¡Listo! Te contactamos pronto para coordinar tu primer envío gratis.<br>
-        <span style="font-size:12px;opacity:0.7;margin-top:6px;display:block;">Revisa tu WhatsApp o correo.</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <div class="divider"></div>
 
@@ -937,7 +852,6 @@
     <strong>Pizzas:</strong> vie — dom · <strong>Panadería:</strong> bajo pedido<br>
     Heredia · Barva · Sto. Domingo · Sta. Bárbara · San Rafael · San Isidro<br>
     Belén · Flores · San Pablo<br>
-    San José y Alajuela según cantidad del pedido<br>
     <a href="https://wa.me/50686247881" style="color:var(--accent);text-decoration:none;">WhatsApp: +506 8624 7881</a>
     <br>
     <a href="https://instagram.com/limbo_costarica" target="_blank" style="color:var(--accent);text-decoration:none;">Instagram: @limbo_costarica</a>
@@ -1018,42 +932,6 @@ async function cargarStock() {
 
 cargarStock();
 setInterval(cargarStock, REFRESH_MS);
-
-// ─── LEAD FORM ───
-async function submitLead() {
-  const name    = document.getElementById("lead-name").value.trim();
-  const contact = document.getElementById("lead-contact").value.trim();
-  const btn     = document.querySelector(".form-submit");
-
-  if (!name || !contact) {
-    alert("Por favor completa tu nombre y contacto.");
-    return;
-  }
-
-  btn.textContent = "Enviando...";
-  btn.disabled = true;
-
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycbwB1CQVetU4AQQL5ZkZ7GqdOSLukQ__HYu_9ocTYBTTjpWHy6iGcuigDXsjZYlu4vRBtw/exec", {
-      method: "POST",
-      body: new URLSearchParams({
-        nombre: name,
-        telefono: contact,
-        direccion: "",
-        pedido: ""
-      })
-    });
-
-    document.getElementById("lead-form-wrap").style.display = "none";
-    document.getElementById("success-msg").style.display    = "block";
-
-  } catch(e) {
-    console.error(e);
-    btn.textContent = "Quiero mi primer envío gratis";
-    btn.disabled = false;
-    alert("Hubo un problema. Por favor intentá de nuevo.");
-  }
-}
 </script>
 </body>
 </html>
